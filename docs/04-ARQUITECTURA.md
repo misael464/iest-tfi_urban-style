@@ -111,7 +111,8 @@ iest-tfi_urban-style/
 │   │   ├── plan.md
 │   │   ├── tasks.md
 │   │   └── verificacion.md
-│   └── 002-.../                      ← mismos cinco archivos en cada funcionalidad
+│   ├── 002-detalle-carrito/          ← mismos cinco archivos
+│   └── 003-pedido-whatsapp/          ← mismos cinco archivos
 ├── .claude/                          ← (proceso) configuración de Claude Code
 │   ├── commands/
 │   │   ├── spec.md

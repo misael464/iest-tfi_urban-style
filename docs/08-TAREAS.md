@@ -29,14 +29,16 @@ requerimiento de [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md) que cubre.
 | 5 | Filtros y detalle de productos | 4 |
 | 6 | Carrito | 5 |
 | 7 | Validación y envío de pedidos | 6 |
-| 8 | Contacto | 2 y 3 |
-| 9 | Administración | 3 y 7 |
-| 10 | Seguridad | 7, 8 y 9 |
+| 8 | Contacto (segunda etapa) | 2 y 3 |
+| 9 | Administración (segunda etapa) | 3 y 7 |
+| 10 | Seguridad | 7 (y 8 y 9 en la segunda etapa) |
 | 11 | Pruebas | 10 |
 | 12 | Publicación y revisión final | 11 |
 
 Las etapas 2 y 3 se pueden hacer en paralelo, y la etapa 8 (Contacto) se
 puede adelantar en cualquier momento después de ellas.
+
+Las etapas 8 y 9 quedan fuera del TFI y pasan a una segunda etapa (ver “Alcance del Trabajo Final Integrador” en [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md)).
 
 ## Etapa 1 · Preparación del proyecto
 
@@ -78,6 +80,7 @@ con los colores y las fuentes del manual, en celular y en computadora.
 - [ ] Crear `js/lib/supabase.js`, con `supabase-js` importado desde jsDelivr con versión fija.
 - [ ] Probar una lectura de categorías desde una página.
 - [ ] Probar que, con la clave anon, insertar o modificar una fila de cualquier tabla es rechazado.
+- [ ] Desactivar el registro público de usuarios en Supabase Auth, aunque el panel quede para la segunda etapa.
 
 **Criterio de terminado:** las 10 tablas existen con RLS activado y datos de
 demostración, una página del sitio puede leer la lista de categorías y un
@@ -136,7 +139,7 @@ importes se actualizan solos al cambiar una cantidad.
 abre WhatsApp con el detalle; un pedido con un precio alterado o sin stock es
 rechazado por `crear_pedido`.
 
-## Etapa 8 · Contacto
+## Etapa 8 · Contacto (segunda etapa)
 
 - [ ] Armar `contacto.html` con los datos de `js/config/sitio.js` (RF14).
 - [ ] Agregar a `js/lib/validaciones.js` las reglas del formulario, con sus tests (RF15).
@@ -148,9 +151,10 @@ rechazado por `crear_pedido`.
 consulta con datos inválidos muestra el error junto al campo; enviada a mano
 a Supabase, `crear_consulta` también la rechaza.
 
-## Etapa 9 · Administración
+## Etapa 9 · Administración (segunda etapa)
 
-- [ ] Desactivar el registro público de usuarios en Supabase Auth.
+Fuera del alcance del TFI (ver “Alcance del Trabajo Final Integrador” en [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md)). Mientras tanto, los productos, el stock y los pedidos se gestionan desde el panel web de Supabase. El registro público de usuarios ya se desactiva en la Etapa 3.
+
 - [ ] Revisar la configuración de límite de intentos de ingreso de Supabase Auth (RF16).
 - [ ] Crear el primer administrador: usuario en Supabase Auth y fila en `administradores` (ver [10-SEGURIDAD.md](10-SEGURIDAD.md)).
 - [ ] Crear `js/lib/auth.js`: ingresar, cerrar sesión y comprobar que el usuario es administrador (RF16).
@@ -176,7 +180,7 @@ pedido.
 - [ ] Verificar que la clave `service_role` no aparece en el código, en el repositorio ni en su historial.
 - [ ] Verificar que no se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
 - [ ] Verificar que `crear_pedido` calcula el total con los precios de la base e ignora los que manda el navegador.
-- [ ] Probar el límite de intentos fallidos de inicio de sesión.
+- [ ] Probar el límite de intentos fallidos de inicio de sesión (segunda etapa, cuando exista el panel).
 - [ ] Verificar que los mensajes de error no muestran datos internos.
 
 **Criterio de terminado:** todas las casillas de la lista de control de
@@ -186,7 +190,7 @@ seguridad están marcadas (RNF06).
 
 - [ ] Ejecutar `npm test` y comprobar que todos los tests pasan.
 - [ ] Recorrer una compra completa en celular y en computadora (RNF01, RNF04).
-- [ ] Probar cada criterio de aceptación de RF01 a RF22.
+- [ ] Probar cada criterio de aceptación de RF01 a RF13 (alcance del TFI).
 - [ ] Navegar todo el sitio usando solo el teclado (RNF02).
 - [ ] Ejecutar Lighthouse en inicio y catálogo (RNF02, RNF03).
 - [ ] Probar en Chrome, Firefox, Edge y Safari (RNF07).

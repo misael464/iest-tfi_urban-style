@@ -263,7 +263,8 @@ sin punto final y con 72 caracteres como máximo.
 | `datos` | Esquema, políticas, funciones y datos de demostración |
 | `estilos` | CSS e identidad visual |
 | `tests` | Tests de Vitest |
-| `docs` | Especificaciones | `multimedia` | Imágenes, video, gráficos y fichas de IA |
+| `docs` | Especificaciones |
+| `multimedia` | Imágenes, video, gráficos y fichas de IA |
 
 ```text
 catalogo: agrega filtro por talle y color
@@ -282,4 +283,3 @@ Reglas:
 - Nunca se sube la clave `service_role` ni ningún archivo con contraseñas
   (ver [10-SEGURIDAD.md](10-SEGURIDAD.md)).
 - Al terminar una tarea se tilda su casilla en el `tasks.md` de su spec y, si corresponde, en [08-TAREAS.md](08-TAREAS.md), dentro del mismo commit.
-  dentro del mismo commit.
