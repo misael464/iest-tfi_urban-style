@@ -26,13 +26,17 @@ prendas son las protagonistas.
 | Pantalla | Dirección | Contenido principal |
 | --- | --- | --- |
 | Inicio | `/` | Banner con eslogan, productos destacados y categorías |
-| Catálogo | `/catalogo` | Buscador, filtros y grilla de productos |
-| Detalle de producto | `/catalogo/[slug]` | Fotos, datos, selector de talle y color, cantidad |
-| Carrito | `/carrito` | Ítems, totales y envío por WhatsApp |
-| Contacto | `/contacto` | Información, horarios, enlaces y formulario |
-| No encontrado | cualquier dirección inexistente | Mensaje y botón al catálogo |
-| Ingreso al panel | `/admin/ingresar` | Formulario de inicio de sesión |
-| Panel de administración | `/admin` y subpáginas | Productos, categorías, talles y colores, pedidos y consultas |
+| Catálogo | `/catalogo.html` | Buscador, filtros y grilla de productos |
+| Detalle de producto | `/producto.html?slug=...` | Fotos, datos, selector de talle y color, cantidad |
+| Carrito | `/carrito.html` | Ítems, totales y envío por WhatsApp |
+| Contacto (segunda etapa) | `/contacto.html` | Información, horarios, enlaces y formulario |
+| No encontrado | cualquier dirección inexistente (`404.html`) | Mensaje y botón al catálogo |
+| Ingreso al panel (segunda etapa) | `/admin/ingresar.html` | Formulario de inicio de sesión |
+| Panel de administración (segunda etapa) | `/admin/` y sus páginas | Productos, categorías, talles y colores, pedidos y consultas |
+
+Contacto y el panel quedan para una segunda etapa (ver “Alcance del Trabajo
+Final Integrador” en [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md)). Su diseño
+queda definido acá para cuando se construyan.
 
 ### Inicio
 
@@ -45,7 +49,7 @@ prendas son las protagonistas.
 4. **Categorías:** un bloque por cada categoría activa, que lleva al catálogo
    ya filtrado.
 5. **Cierre:** franja Beige con la frase “¿Dudas con el talle? Escribinos” y
-   un botón secundario a Contacto.
+   un botón secundario que abre WhatsApp (en la segunda etapa, lleva a Contacto).
 6. **Pie de página.**
 
 ### Catálogo
@@ -73,13 +77,13 @@ prendas son las protagonistas.
 - Campo “Tu nombre” y botón “Enviar pedido por WhatsApp”.
 - Aclaración: “El pago y la entrega se coordinan por WhatsApp.”
 
-### Contacto
+### Contacto (segunda etapa)
 
 - Información general, horarios y enlaces a WhatsApp y redes, leídos de la
   configuración. Si un dato no está cargado, ese bloque no se muestra.
 - Formulario de consulta.
 
-### Panel de administración
+### Panel de administración (segunda etapa)
 
 - Barra lateral Negro carbón con el logo oscuro y el menú: Resumen, Productos,
   Categorías, Talles y colores, Pedidos, Consultas, Cerrar sesión.
@@ -93,7 +97,9 @@ prendas son las protagonistas.
 - Fondo Marfil con una línea inferior de 2 px en Negro carbón. Queda fijo
   arriba al desplazarse.
 - A la izquierda, el logo principal (`logo.svg`), con 40 px de alto como mínimo.
-- Enlaces: **Inicio**, **Catálogo** y **Contacto**, en Montserrat Bold de 14 px.
+- Enlaces: **Inicio** y **Catálogo**, en Montserrat Bold de 14 px. **Contacto** se suma en la segunda etapa.cuando exista la página.
+- El encabezado se escribe en cada archivo HTML; el JS solo abre el menú en
+  el celular, marca la página actual y actualiza el contador.
 - A la derecha, el acceso al carrito con un contador (círculo Beige con
   número en Negro carbón).
 - La página actual se marca con una línea inferior de 2 px.
@@ -230,7 +236,7 @@ pantalla con `role="status"` o `role="alert"`.
 El título del estado vacío va en Montserrat Bold; el texto de apoyo puede ir
 en Gris medio si mide 24 px o más.
 
-### Panel de administración
+### Panel de administración (segunda etapa)
 
 - Tablas con encabezado Negro carbón y texto Marfil; filas separadas por una
   línea Gris medio.

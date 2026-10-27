@@ -14,7 +14,7 @@ protegido.
 | Dato | Valor |
 | --- | --- |
 | Tipo de proyecto | Sitio web responsive |
-| Stack | React, Next.js (App Router), CSS, PostgreSQL, GitHub y Vercel |
+| Stack | HTML, CSS y JavaScript sin frameworks; Supabase (PostgreSQL y Auth); Vitest; GitHub y Vercel |
 | Idioma de la interfaz | Español, tratando de vos |
 | Estado | Especificación terminada. El sitio todavía no está programado |
 | Autor | Andrés Misael Gordillo |
@@ -51,7 +51,8 @@ Recursos de marca: [marca/logo.svg](marca/logo.svg),
 | Si la tarea es sobre… | Leer también |
 | --- | --- |
 | Pantallas, componentes o estilos | [06-DISENO-UI.md](docs/06-DISENO-UI.md) y [07-CONVENCIONES.md](docs/07-CONVENCIONES.md) |
-| Base de datos o consultas | [05-DATOS.md](docs/05-DATOS.md) y [10-SEGURIDAD.md](docs/10-SEGURIDAD.md) |
+| Base de datos, políticas RLS o funciones RPC | [05-DATOS.md](docs/05-DATOS.md) y [10-SEGURIDAD.md](docs/10-SEGURIDAD.md) |
+| Tests | [07-CONVENCIONES.md](docs/07-CONVENCIONES.md) |
 | Carrito o pedidos | [02-REQUERIMIENTOS.md](docs/02-REQUERIMIENTOS.md), [04-ARQUITECTURA.md](docs/04-ARQUITECTURA.md) y [10-SEGURIDAD.md](docs/10-SEGURIDAD.md) |
 | Panel de administración | [10-SEGURIDAD.md](docs/10-SEGURIDAD.md) y [05-DATOS.md](docs/05-DATOS.md) |
 | Títulos, descripciones o imágenes | [09-SEO.md](docs/09-SEO.md) |
@@ -71,7 +72,7 @@ Recursos de marca: [marca/logo.svg](marca/logo.svg),
 | `--color-secundario` | Gris medio | `#777777` |
 
 - Usar solo **Montserrat Bold** para títulos y botones e **Inter Regular** para textos.
-- No escribir colores HEX a mano en componentes ni en archivos `.module.css`.
+- No escribir colores HEX fuera de `css/globales.css`.
 - No agregar colores, tipografías, pesos, sombras ni degradados.
 - No usar rojo ni verde para errores o confirmaciones: se resuelven con ícono, texto y borde.
 - No usar Gris medio en textos de menos de 24 px, ni Beige como texto sobre Marfil.
@@ -81,28 +82,29 @@ Recursos de marca: [marca/logo.svg](marca/logo.svg),
 ### Tecnologías
 
 - Usar únicamente el stack de [docs/03-TECNOLOGIAS.md](docs/03-TECNOLOGIAS.md).
-- No instalar bibliotecas nuevas sin preguntar antes. Las únicas previstas son `pg` y `bcryptjs`.
-- No usar Tailwind, Bootstrap, TypeScript, ORM ni bases de datos no relacionales.
+- No instalar bibliotecas nuevas sin preguntar antes. Las únicas previstas son `supabase-js` (módulo ES desde jsDelivr, con versión fija) y Vitest (dependencia de desarrollo).
+- No usar React, Next.js ni otros frameworks, empaquetadores, Tailwind, Bootstrap, TypeScript, ORM ni bases de datos no relacionales.
 - Escribir el código en JavaScript, con las convenciones de [docs/07-CONVENCIONES.md](docs/07-CONVENCIONES.md).
 
 ### Arquitectura
 
 - Respetar el árbol de carpetas de [docs/04-ARQUITECTURA.md](docs/04-ARQUITECTURA.md).
-- Conectarse a la base **solo** desde `lib/db.js`.
-- Escribir consultas SQL **solo** en archivos de `lib/`.
+- HTML, CSS y JavaScript siempre en archivos separados: sin `<style>`, sin `style=""`, sin `<script>` con código y sin `onclick` en el HTML.
+- Conectarse a Supabase **solo** desde `js/lib/supabase.js`.
+- Escribir SQL **solo** en los archivos de `db/`. El JavaScript nunca arma texto SQL.
+- `carrito.js`, `validaciones.js`, `whatsapp.js` y `formato.js` no importan Supabase, para que Vitest los pruebe sin conexión.
 - Mantener `db/esquema.sql` idéntico a [docs/05-DATOS.md](docs/05-DATOS.md). Si cambia uno, cambia el otro.
-- Trabajar **una tarea por vez** de [docs/08-TAREAS.md](docs/08-TAREAS.md) y marcarla con `[x]` al terminarla y probarla.
+- Trabajar **una tarea por vez** y marcarla con `[x]` al terminarla y probarla, en el `tasks.md` de su spec y, si corresponde, en [docs/08-TAREAS.md](docs/08-TAREAS.md).
 
 ### Seguridad
 
-- Usar siempre consultas parametrizadas. Nunca concatenar valores dentro del SQL.
-- Validar en el servidor todo lo que llega del navegador.
-- Calcular precios, subtotales y totales en el servidor, con datos de la base.
-- Comprobar la sesión en cada página y en cada ruta del panel.
-- Nunca mostrar, registrar ni subir `DATABASE_URL`, contraseñas o identificadores de sesión.
-- Nunca poner un secreto en una variable que empiece con `NEXT_PUBLIC_`.
-- Nunca usar `dangerouslySetInnerHTML`.
-- Nunca guardar contraseñas en texto plano.
+- RLS activado en **todas** las tablas. Una tabla nueva se crea con su RLS y sus políticas en el mismo cambio.
+- En el navegador solo se usa la clave **anon** de Supabase. La clave `service_role` nunca va en el código, en el repositorio ni en el chat con la IA.
+- El total del pedido y el stock los valida la función `crear_pedido` en Supabase, con los precios de la base. El navegador solo envía identificadores de variante y cantidades.
+- Nunca usar `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`: el texto va con `textContent`.
+- Nunca mostrar al usuario el `error.message` de Supabase: se reemplaza por un mensaje propio.
+- Las páginas del panel comprueban la sesión al cargar, pero lo que protege los datos es la RLS.
+- Nunca guardar contraseñas en archivos del proyecto: las maneja Supabase Auth.
 
 ### Información del negocio
 
@@ -112,7 +114,7 @@ Recursos de marca: [marca/logo.svg](marca/logo.svg),
 - El número de WhatsApp es un valor de configuración **pendiente de completar**:
 
 ```javascript
-// config/sitio.js
+// js/config/sitio.js
 export const sitio = {
   nombre: "Urban Style",
   eslogan: "Tu estilo, tus reglas",
@@ -161,4 +163,5 @@ correspondiente y después el código.
 - [ ] Se ve bien en celular y en computadora.
 - [ ] No expone secretos ni datos privados.
 - [ ] Respeta las convenciones de nombres y de commits.
-- [ ] La casilla de [docs/08-TAREAS.md](docs/08-TAREAS.md) quedó marcada.
+- [ ] `npm test` pasa.
+- [ ] La casilla del `tasks.md` de su spec (y, si corresponde, la de [docs/08-TAREAS.md](docs/08-TAREAS.md)) quedó marcada.

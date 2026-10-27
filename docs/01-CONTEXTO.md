@@ -74,17 +74,28 @@ registrarse.
 
 ## Alcance inicial
 
-El primer lanzamiento incluye:
+El primer lanzamiento es el del Trabajo Final Integrador (plazo: 30 de
+octubre de 2026) y se limita a la tienda:
 
-- Páginas públicas: inicio, catálogo, detalle de producto, carrito y contacto.
-- Búsqueda y filtros del catálogo.
-- Carrito guardado en el navegador del cliente.
-- Registro del pedido en la base de datos y envío por WhatsApp.
-- Formulario de contacto con validaciones.
+| Funcionalidad | Requerimientos | Incluye |
+| --- | --- | --- |
+| 1 · Catálogo, búsqueda y filtros | RF01 a RF05 | Inicio, catálogo, búsqueda por nombre, filtros y estado vacío |
+| 2 · Detalle del producto y carrito | RF06 a RF11 | Detalle con talle, color y cantidad; carrito guardado en el navegador del cliente, con subtotales y total |
+| 3 · Pedido por WhatsApp | RF12 y RF13 | Validación del pedido en Supabase, registro en la base de datos y envío por WhatsApp |
+
+**Segunda etapa:**
+
+- Página y formulario de contacto (RF14 y RF15).
 - Panel de administración con inicio de sesión para productos, categorías,
-  talles, colores, precios, stock, pedidos y consultas.
+  talles, colores, precios, stock, pedidos y consultas (RF16 a RF22).
 
-El detalle de cada función está en [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md).
+Mientras no exista el panel propio, los productos, las variantes, los precios
+y el stock se cargan, y el estado de los pedidos se cambia, desde el panel web
+de Supabase.
+
+El detalle de cada función y del alcance está en
+[02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md) (sección “Alcance del Trabajo
+Final Integrador”).
 
 ## No incluye por ahora
 
@@ -110,10 +121,10 @@ negocio los defina:
 
 | Dato | Estado | Dónde se configura |
 | --- | --- | --- |
-| Número de WhatsApp | Pendiente | `config/sitio.js` |
-| Horarios de atención | Pendiente | `config/sitio.js` |
-| Enlaces a redes sociales | Pendiente | `config/sitio.js` |
-| Correo de contacto | Pendiente | `config/sitio.js` |
-| Precios reales | Pendiente (se usa `$ 0` como marcador) | Panel de administración |
-| Fotos de los productos | Pendiente | `public/img/productos/` |
-| Dominio del sitio | Pendiente | Variable `NEXT_PUBLIC_SITE_URL` |
+| Número de WhatsApp | Pendiente | `js/config/sitio.js` |
+| Horarios de atención | Pendiente | `js/config/sitio.js` |
+| Enlaces a redes sociales | Pendiente | `js/config/sitio.js` |
+| Correo de contacto | Pendiente | `js/config/sitio.js` |
+| Precios reales | Pendiente (se usa `$ 0` como marcador) | Panel web de Supabase; panel propio en la segunda etapa |
+| Fotos de los productos | Pendiente | `img/productos/` |
+| Dominio del sitio | Pendiente | Marcador `DOMINIO-PENDIENTE` en los HTML, `sitemap.xml` y `robots.txt` (ver [09-SEO.md](09-SEO.md)) |

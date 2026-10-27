@@ -2,24 +2,39 @@
 
 > **Pregunta que responde este archivo:** ¿cómo protegemos los datos y el sistema?
 
-Regla general: **el navegador no es confiable.** Todo lo que llega desde el
-navegador se valida en el servidor, y nada secreto sale del servidor.
+Regla general: **el navegador no es confiable.** Todo el código JavaScript del
+sitio se puede leer y modificar desde el navegador, y cualquiera puede llamar
+a Supabase sin pasar por las páginas. Por eso la protección real está en
+Supabase: en las políticas RLS, en las restricciones de la base y en las
+funciones RPC.
+
+## Reglas obligatorias
+
+1. **RLS activado en todas las tablas.** Los visitantes solo leen el catálogo
+   activo y crean pedidos y consultas. No modifican nada más.
+2. **En el navegador solo se usa la clave anon de Supabase.** La clave
+   `service_role` nunca va en el código ni en el repositorio.
+3. **El total del pedido y el stock los valida una función de Supabase (RPC)**
+   con los precios de la base, no el navegador.
+
+El SQL de las políticas y de las funciones está en [05-DATOS.md](05-DATOS.md).
 
 ## Datos que se protegen
 
 | Dato | Dónde está | Por qué es sensible | Protección |
 | --- | --- | --- | --- |
-| Cadena de conexión `DATABASE_URL` | Variables de entorno | Da acceso total a la base | Solo en el servidor; nunca en el repositorio |
-| Contraseñas de administradores | Tabla `administradores` | Permiten entrar al panel | Se guarda solo el hash |
-| Sesiones del panel | Tabla `sesiones` y cookie | Permiten actuar como administrador | Cookie protegida y vencimiento |
-| Nombre de quien hace un pedido | Tabla `pedidos` | Dato personal | Visible solo en el panel |
-| Nombre, correo y mensaje de consultas | Tabla `consultas` | Datos personales | Visibles solo en el panel |
-| Precios y stock | Tablas `productos` y `variantes` | Si se alteran, se vende mal | Solo se modifican desde el panel |
+| Clave `service_role` | Panel de Supabase | Saltea la RLS: da acceso total a la base | No se usa en el proyecto; nunca en el código ni en el repositorio |
+| Contraseña de la base de datos | Panel de Supabase | Da acceso total a la base | Solo para copias de seguridad; nunca en el repositorio |
+| Contraseñas de administradores | Supabase Auth | Permiten entrar al panel | Supabase guarda solo el hash |
+| Sesiones del panel | Supabase Auth y `localStorage` del navegador | Permiten actuar como administrador | Vencen y se renuevan; el cierre de sesión las invalida |
+| Nombre de quien hace un pedido | Tabla `pedidos` | Dato personal | RLS: solo lo leen los administradores |
+| Nombre, correo y mensaje de consultas | Tabla `consultas` | Datos personales | RLS: solo los leen los administradores |
+| Precios y stock | Tablas `productos` y `variantes` | Si se alteran, se vende mal | RLS: solo los modifican los administradores |
 
 ### Protección de datos personales
 
 - Se pide **lo mínimo**: no se guardan teléfonos, direcciones, documentos ni datos de pago.
-- Los datos personales solo se ven dentro del panel, con sesión iniciada.
+- Los datos personales solo se ven dentro del panel, con sesión de administrador.
 - El formulario de contacto avisa para qué se usan los datos: responder la consulta.
 - Los datos no se comparten con terceros ni se usan para otra finalidad.
 - Los datos se conservan solo mientras hagan falta para atender el pedido o la consulta.
@@ -27,179 +42,223 @@ navegador se valida en el servidor, y nada secreto sale del servidor.
 
 ## Qué nunca debe llegar al navegador
 
-- `DATABASE_URL` ni ninguna otra credencial.
-- Hashes de contraseñas e identificadores de sesión de otros usuarios.
-- Pedidos, consultas y datos de administradores, salvo en el panel con sesión.
-- Productos dados de baja y variantes inactivas.
-- Mensajes de error internos: texto de errores SQL, rutas de archivos o trazas.
+- La clave `service_role` ni la contraseña de la base de datos.
+- Pedidos, consultas y datos de administradores, salvo a un administrador con sesión.
+- Productos dados de baja, variantes inactivas y categorías desactivadas.
+- Mensajes de error internos: texto de errores SQL, nombres de tablas o trazas.
 
-## Variables de entorno y secretos
+La RLS se encarga de los tres primeros puntos aunque alguien modifique el JS.
 
-- Los secretos viven en `.env.local` (desarrollo) y en el panel de Vercel (producción).
-- `.env.local` está en `.gitignore` y **nunca** se sube a GitHub.
-- Un secreto nunca lleva el prefijo `NEXT_PUBLIC_`, porque ese prefijo lo envía al navegador.
-- `DATABASE_URL` se lee en un solo archivo: `lib/db.js`.
-- Si un secreto se sube por error, se cambia de inmediato en el servicio
-  correspondiente. Borrarlo del repositorio no alcanza: queda en el historial.
-- En esta documentación solo hay valores de ejemplo, nunca credenciales reales.
+## Claves de Supabase
 
-```javascript
-// lib/db.js · único archivo que se conecta a la base
-import { Pool } from "pg";
+| Clave | Dónde va | Por qué |
+| --- | --- | --- |
+| URL del proyecto | `js/config/supabase.js` | Es pública |
+| Clave `anon` | `js/config/supabase.js` | Es pública **por diseño**: solo permite lo que autorizan las políticas RLS |
+| Clave `service_role` | En ningún archivo del proyecto | Saltea todas las políticas. El sitio no la necesita: el SQL se ejecuta en el editor del panel de Supabase |
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+- Antes de cada commit se revisa que la clave `service_role` no aparezca en
+  ningún archivo.
+- Si la clave `service_role` o la contraseña de la base se suben por error,
+  se cambian de inmediato en el panel de Supabase. Borrarlas del repositorio
+  no alcanza: quedan en el historial.
+- En esta documentación solo hay valores de ejemplo, nunca claves reales.
 
-export function consultar(texto, valores = []) {
-  return pool.query(texto, valores);
-}
+```bash
+# Busca la clave en los archivos y en todo el historial de Git.
+# Tiene que no devolver nada.
+git grep -n "service_role" -- ':!docs' ':!AGENTS.md'
+git log -p -S "service_role" -- ':!docs' ':!AGENTS.md'
 ```
+
+## Políticas de acceso (RLS)
+
+| Quién | Qué puede hacer |
+| --- | --- |
+| Visitante (clave anon) | Leer categorías, productos, imágenes y variantes activas, y todos los talles y colores. Crear pedidos con `crear_pedido` y consultas con `crear_consulta`. **Nada más** |
+| Usuario con sesión que no es administrador | Lo mismo que un visitante |
+| Administrador activo | Leer y modificar el catálogo; leer pedidos y consultas; cambiar el estado de los pedidos con las funciones RPC; marcar consultas como respondidas |
+
+- Ninguna tabla tiene políticas de `INSERT`, `UPDATE` ni `DELETE` para los visitantes.
+- Los pedidos no tienen política de `UPDATE` ni siquiera para el
+  administrador: el estado cambia solo con `confirmar_pedido`,
+  `entregar_pedido` y `cancelar_pedido`, que mantienen el stock correcto.
+- Una tabla nueva se crea siempre con su `ENABLE ROW LEVEL SECURITY` y sus
+  políticas en el mismo cambio.
 
 ## Validación de formularios
 
 Se valida **dos veces**: en el navegador, para avisar rápido al usuario, y en
-el servidor, que es la validación que realmente protege.
+Supabase, que es la validación que realmente protege.
 
-| Campo | Regla | Mensaje al usuario |
-| --- | --- | --- |
-| Nombre (pedido y consulta) | Obligatorio, de 2 a 60 caracteres | “Escribí tu nombre (entre 2 y 60 caracteres).” |
-| Correo (consulta) | Obligatorio, formato de correo, hasta 120 caracteres | “Revisá el correo: parece incompleto.” |
-| Mensaje (consulta) | Obligatorio, de 10 a 1000 caracteres | “Contanos tu consulta en al menos 10 caracteres.” |
-| Identificador de variante | Entero positivo que exista en la base | “Uno de los productos ya no está disponible.” |
-| Cantidad | Entero de 1 a 10, sin superar el stock | “Solo quedan N unidades de este talle.” |
-| Ítems del pedido | De 1 a 20 variantes distintas | “Tu carrito tiene demasiados productos distintos.” |
-| Precio (panel) | Número mayor o igual a 0, con hasta 2 decimales | “El precio no puede ser negativo.” |
-| Stock (panel) | Entero mayor o igual a 0 | “El stock tiene que ser un número entero.” |
-| Color `hex` (panel) | Formato `#RRGGBB` | “Usá un color con formato #RRGGBB.” |
+| Campo | Regla | Mensaje al usuario | Dónde lo controla Supabase |
+| --- | --- | --- | --- |
+| Nombre (pedido y consulta) | Obligatorio, de 2 a 60 caracteres | “Escribí tu nombre (entre 2 y 60 caracteres).” | `CHECK` de la tabla y `crear_pedido` |
+| Correo (consulta) | Obligatorio, formato de correo, hasta 120 caracteres | “Revisá el correo: parece incompleto.” | `CHECK` de la tabla |
+| Mensaje (consulta) | Obligatorio, de 10 a 1000 caracteres | “Contanos tu consulta en al menos 10 caracteres.” | `CHECK` de la tabla |
+| Identificador de variante | Entero positivo que exista y esté a la venta | “Uno de los productos ya no está disponible.” | `crear_pedido` |
+| Cantidad | Entero de 1 a 10, sin superar el stock | “Solo quedan N unidades de este talle.” | `crear_pedido` y `CHECK` de `pedido_detalles` |
+| Ítems del pedido | De 1 a 20 variantes distintas | “Tu carrito tiene demasiados productos distintos.” | `crear_pedido` |
+| Precio (panel) | Número mayor o igual a 0, con hasta 2 decimales | “El precio no puede ser negativo.” | `CHECK` y tipo `NUMERIC(12,2)` |
+| Stock (panel) | Entero mayor o igual a 0 | “El stock tiene que ser un número entero.” | `CHECK` y tipo `INTEGER` |
+| Color `hex` (panel) | Formato `#RRGGBB` | “Usá un color con formato #RRGGBB.” | `CHECK` de la tabla |
 
-- Las reglas están en `lib/validaciones.js` y se usan en ambos lados, para
-  que no se desincronicen.
-- El servidor acepta solo los campos esperados e ignora el resto.
-- El formulario de contacto incluye un campo oculto que las personas no ven:
-  si llega completo, el envío se descarta por ser automático.
+- Las reglas del navegador están en `js/lib/validaciones.js`, con sus tests.
+- Las funciones RPC leen solo los campos que esperan e ignoran el resto.
+- El formulario de contacto incluye un campo oculto que las personas no ven.
+  `crear_consulta` lo recibe y, si llega completo, descarta el envío por ser
+  automático.
 
 ## Cantidades, precios y disponibilidad
 
-- El navegador envía solo **identificadores de variante y cantidades**.
-- El servidor lee el precio y el stock de la base y calcula el total.
+- El navegador envía a `crear_pedido` solo **identificadores de variante y cantidades**.
+- La función lee el precio y el stock de la base y calcula el total.
 - Un precio o un total enviados desde el navegador se ignoran siempre.
+- El mensaje de WhatsApp se arma con el total que devuelve la función, no con
+  el que calculó el navegador.
 - La base tiene restricciones (`precio >= 0`, `stock >= 0`, cantidad entre 1 y
   10) que actúan como última barrera.
 
 El detalle del cálculo está en [05-DATOS.md](05-DATOS.md).
 
-## Inyección SQL: consultas parametrizadas
+## Inyección SQL
 
-Los valores **nunca** se pegan dentro del texto de la consulta. Viajan aparte,
-como parámetros, y la base los trata como datos y no como instrucciones.
+- El JS **nunca** arma texto SQL. Habla con la base solo con los métodos de
+  `supabase-js` (`from`, `select`, `eq`, `rpc`…), que envían los valores como
+  datos y no como instrucciones.
+- Dentro de las funciones RPC, los valores se usan como parámetros (`p_items`,
+  `p_nombre_cliente`). No se usa `EXECUTE` con texto armado a partir de datos
+  del usuario.
+- Las funciones `SECURITY DEFINER` fijan `SET search_path = public`, para que
+  nadie pueda reemplazar una tabla con otra del mismo nombre.
+- Los nombres de columnas para ordenar o filtrar no se toman del usuario: se
+  eligen de una lista fija definida en el código.
 
 ```javascript
-// MAL: el texto del usuario pasa a formar parte de la consulta
-const texto = "SELECT * FROM productos WHERE nombre ILIKE '%" + busqueda + "%'";
+// MAL: el texto del usuario pasa a formar parte de un filtro armado a mano
+supabase.from("productos").select("*").or(`nombre.ilike.%${busqueda}%`);
 
-// BIEN: el valor viaja como parámetro ($1)
-const resultado = await consultar(
-  "SELECT id, nombre, precio FROM productos " +
-    "WHERE activo AND unaccent(nombre) ILIKE unaccent($1)",
-  [`%${busqueda}%`]
-);
+// BIEN: el valor viaja como parámetro de una función RPC
+supabase.rpc("buscar_productos", { p_texto: busqueda });
 ```
-
-Los nombres de columnas para ordenar o filtrar no se toman del usuario: se
-eligen de una lista fija definida en el código.
 
 ## XSS: contenido insertado en la página
 
-- React escapa de forma automática el texto que se muestra.
-- No se usa `dangerouslySetInnerHTML`.
+- No se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
+- El texto se muestra con `textContent` y los atributos se asignan con
+  propiedades (`imagen.src`, `enlace.href`).
 - Las descripciones de productos y los mensajes de consultas se muestran como
   texto, nunca como HTML.
-- Las rutas de imágenes se validan: deben empezar con `/img/productos/`.
-- El texto del pedido se codifica con `encodeURIComponent` antes de armar el
-  enlace de WhatsApp.
+- Las rutas de imágenes deben empezar con `/img/productos/` (lo controla un
+  `CHECK` de la base).
+- Los valores que van dentro de una dirección (el `slug`, el texto del pedido
+  para WhatsApp) se codifican con `encodeURIComponent`.
+
+Esto es especialmente importante porque `supabase-js` guarda la sesión del
+panel en `localStorage`: un código inyectado en la página podría leerla.
 
 ## Autenticación y sesiones
 
 | Aspecto | Decisión |
 | --- | --- |
-| Quién tiene cuenta | Solo administradores. No hay registro público |
-| Alta de administradores | Con el script `db/crear-admin.js`, desde la terminal |
-| Contraseña | Entre 12 y 72 caracteres (72 es el máximo que procesa bcrypt) |
-| Almacenamiento | Hash con `bcryptjs`, factor de costo 12. Nunca en texto plano |
-| Intentos fallidos | Tras 5 intentos seguidos, la cuenta se bloquea 15 minutos |
+| Quién tiene cuenta | Solo administradores. El registro público está **desactivado** en Supabase Auth |
+| Quién es administrador | Un usuario de Supabase Auth que además figura activo en la tabla `administradores` |
+| Contraseña | Mínimo 12 caracteres, configurado en Supabase Auth |
+| Almacenamiento | Supabase Auth guarda solo el hash. El proyecto no guarda contraseñas |
+| Intentos fallidos | Se aplica el límite de intentos de Supabase Auth (ver RF16 en [02-REQUERIMIENTOS.md](02-REQUERIMIENTOS.md)) |
 | Mensaje de error de ingreso | Siempre el mismo: “Correo o contraseña incorrectos”, sin indicar cuál falló |
-| Identificador de sesión | 32 bytes aleatorios generados con `crypto.randomBytes` |
-| Guardado de la sesión | En la base se guarda el hash SHA-256 del identificador, no el identificador |
-| Duración | 8 horas; después hay que volver a ingresar |
-| Cierre de sesión | Borra la sesión en la base y la cookie |
+| Sesión | `supabase-js` la guarda en `localStorage`. El token vence y se renueva solo mientras se usa el panel |
+| Cierre de sesión | `supabase.auth.signOut()` invalida la sesión en Supabase y la borra del navegador |
 
-La cookie de sesión se crea con estos atributos:
+### Alta de un administrador
 
-| Atributo | Valor | Para qué sirve |
+1. En el panel de Supabase, **Authentication → Users → Add user**: cargar
+   correo y contraseña.
+2. Copiar el identificador (UUID) del usuario creado.
+3. En el editor SQL de Supabase, agregarlo a la tabla de administradores:
+
+```sql
+INSERT INTO administradores (id, nombre)
+VALUES ('UUID-DEL-USUARIO', 'Nombre del administrador');
+```
+
+Para quitarle el acceso a alguien sin borrar su usuario:
+`UPDATE administradores SET activo = FALSE WHERE id = 'UUID-DEL-USUARIO';`.
+
+## Protección del panel
+
+Los archivos de `admin/` son HTML públicos: cualquiera puede abrirlos. Ocultar
+el enlace o redirigir **no** protege los datos. La protección tiene tres capas:
+
+| Capa | Qué hace | ¿Protege? |
 | --- | --- | --- |
-| `HttpOnly` | Activado | El código JavaScript de la página no puede leerla |
-| `Secure` | Activado en producción | Solo viaja por HTTPS |
-| `SameSite` | `Lax` | No se envía en formularios ni en solicitudes en segundo plano iniciados desde otros sitios |
-| `Path` | `/` | Vale para todo el sitio |
-| `Max-Age` | 28800 segundos | Vence a las 8 horas |
-
-## Protección de rutas administrativas
-
-Ocultar el enlace al panel **no** lo protege. La sesión se comprueba en el
-servidor en dos lugares:
-
-1. En el `layout.js` del grupo `(panel)`: si no hay sesión válida, redirige a
-   `/admin/ingresar`.
-2. En **cada** ruta de `app/api/admin/`: si no hay sesión válida, responde
-   `401` y no ejecuta nada.
+| La página comprueba la sesión al cargar | Si no hay administrador, redirige a `admin/ingresar.html` | No: es comodidad para el usuario |
+| Políticas RLS | Sin `es_admin()`, la base no devuelve pedidos, consultas ni productos inactivos, y no acepta cambios | **Sí** |
+| Funciones RPC del panel | `confirmar_pedido`, `entregar_pedido` y `cancelar_pedido` comprueban `es_admin()` antes de hacer algo | **Sí** |
 
 ```javascript
-// app/api/admin/productos/route.js
-import { exigirAdmin } from "@/lib/auth";
-import { validarProducto } from "@/lib/validaciones";
-import { crearProducto } from "@/lib/productos";
+// js/lib/auth.js
+import { supabase } from "./supabase.js";
 
-export async function POST(solicitud) {
-  const admin = await exigirAdmin(solicitud);
-  if (!admin) {
-    return Response.json({ ok: false, mensaje: "No autorizado." }, { status: 401 });
+// Devuelve el administrador con sesión, o null si no hay sesión
+// o el usuario no figura activo en la tabla administradores.
+export async function obtenerAdministrador() {
+  const { data: datosUsuario } = await supabase.auth.getUser();
+  if (!datosUsuario.user) {
+    return null;
   }
 
-  const datos = await solicitud.json();
-  const errores = validarProducto(datos);
-  if (errores.length > 0) {
-    return Response.json({ ok: false, mensaje: "Revisá los datos.", errores }, { status: 400 });
-  }
+  const { data, error } = await supabase
+    .from("administradores")
+    .select("id, nombre")
+    .eq("id", datosUsuario.user.id)
+    .maybeSingle();
 
-  const producto = await crearProducto(datos);
-  return Response.json({ ok: true, producto }, { status: 201 });
+  return error ? null : data;
 }
 ```
 
-### Solicitudes no autorizadas
+```javascript
+// js/paginas/admin/pedidos.js
+import { obtenerAdministrador } from "../../lib/auth.js";
 
-- Las operaciones que modifican datos usan `POST`, `PUT` o `DELETE`, nunca `GET`.
-- Las rutas del panel comprueban que el encabezado `Origin` coincida con el
-  dominio del sitio, para rechazar solicitudes armadas desde otra página.
-- Las rutas públicas (`/api/pedidos`, `/api/consultas`, `/api/carrito`) solo
-  permiten crear o consultar; ninguna modifica productos, precios ni stock.
-- Los pedidos y las consultas no se pueden leer desde rutas públicas.
+const administrador = await obtenerAdministrador();
+if (!administrador) {
+  window.location.replace("/admin/ingresar.html");
+}
+```
+
+### Solicitudes desde otros sitios
+
+Supabase acepta solicitudes desde cualquier origen: no hay forma de que solo
+responda a las páginas de Urban Style. Por eso ninguna regla de seguridad
+depende de la página que hace la solicitud, sino de la RLS y de las funciones.
 
 ## Manejo seguro de errores
 
-| Situación | Qué ve el usuario | Qué se registra en el servidor |
+| Situación | Qué ve el usuario | Qué se registra |
 | --- | --- | --- |
-| Dato inválido | Mensaje claro junto al campo | Nada |
-| Sin permiso | “No autorizado.” | Ruta y hora |
-| Error inesperado | “Algo salió mal. Probá de nuevo en un momento.” | El error completo |
+| Dato inválido | Mensaje claro junto al campo, o el `mensaje` que devuelve la función RPC | Nada |
+| Sin permiso | “No autorizado.” | Supabase registra la solicitud en sus logs |
+| Error inesperado | “Algo salió mal. Probá de nuevo en un momento.” | Supabase registra el error en sus logs |
 
-Nunca se muestra al usuario el texto de un error de la base de datos, y en
-los registros no se guardan contraseñas ni identificadores de sesión.
+- Nunca se muestra al usuario el `error.message` que devuelve Supabase: se
+  reemplaza por un mensaje propio.
+- En la consola del navegador no se muestran tokens ni datos personales.
+
+## Limitación conocida
+
+Cualquier persona puede llamar a `crear_pedido` muchas veces y registrar
+pedidos falsos. No afectan el stock, porque el stock se descuenta recién
+cuando el administrador confirma. El administrador los cancela desde el
+panel. Limitar la cantidad de pedidos por visitante queda fuera del alcance
+inicial.
 
 ## HTTPS
 
-- En producción el sitio funciona solo por HTTPS. Vercel entrega el
-  certificado y redirige de HTTP a HTTPS.
-- La conexión con la base usa cifrado (`sslmode=require`).
+- Vercel publica el sitio solo por HTTPS: entrega el certificado y redirige de
+  HTTP a HTTPS.
+- Todas las llamadas a Supabase van por HTTPS.
 
 ## Copias de seguridad y actualizaciones
 
@@ -207,29 +266,32 @@ los registros no se guardan contraseñas ni identificadores de sesión.
 - **Base de datos:** una copia con `pg_dump` antes de cada cambio importante y
   al menos una vez por semana cuando el sitio esté en uso. Las copias se
   guardan fuera del repositorio.
-- **Dependencias:** ejecutar `npm audit` una vez por mes y antes de publicar;
-  aplicar las actualizaciones de seguridad en una rama y probar antes de fusionar.
-- **Accesos:** cambiar la contraseña de la base si alguien deja de participar
-  en el proyecto.
+- **Dependencias:** `supabase-js` queda fijo en una versión; se actualiza en
+  una rama y se prueba antes de fusionar. `npm audit` revisa Vitest una vez
+  por mes.
+- **Accesos:** desactivar en `administradores` a quien deje de participar y
+  cambiar la contraseña de la base.
 
 ```bash
-# Copia de seguridad de la base, con la cadena de conexión directa (sin pool).
-# El archivo generado no se sube al repositorio.
-pg_dump "$DATABASE_URL" > respaldo-urban-style.sql
+# Copia de seguridad de la base, con la cadena de conexión que entrega Supabase.
+# La cadena incluye la contraseña de la base: se escribe en la terminal,
+# nunca en un archivo del proyecto. El archivo generado no se sube.
+pg_dump "CADENA_DE_CONEXION_DE_SUPABASE" > respaldo-urban-style.sql
 ```
 
 ## Lista de control antes de publicar
 
-- [ ] `.env.local` no está en el repositorio.
-- [ ] Ninguna variable secreta empieza con `NEXT_PUBLIC_`.
-- [ ] Todas las consultas SQL usan parámetros.
-- [ ] Todas las rutas de API validan lo que reciben.
-- [ ] El total del pedido se calcula en el servidor.
-- [ ] Sin sesión no se puede abrir ninguna página ni ruta del panel.
-- [ ] Las contraseñas están guardadas como hash.
-- [ ] La cookie de sesión tiene `HttpOnly`, `Secure` y `SameSite`.
-- [ ] El bloqueo por intentos fallidos funciona.
-- [ ] No se usa `dangerouslySetInnerHTML`.
+- [ ] Las 10 tablas tienen RLS activado.
+- [ ] Con la clave anon no se puede insertar, modificar ni borrar en ninguna tabla.
+- [ ] Con la clave anon no se leen pedidos, consultas, administradores ni productos inactivos.
+- [ ] La clave `service_role` no está en el código, en el repositorio ni en su historial.
+- [ ] `js/config/supabase.js` tiene solo la URL y la clave anon.
+- [ ] `crear_pedido` calcula el total con los precios de la base e ignora los del navegador.
+- [ ] `crear_pedido` rechaza cantidades que superan el stock.
+- [ ] Las funciones del panel rechazan a quien no es administrador.
+- [ ] El registro público de Supabase Auth está desactivado.
+- [ ] El límite de intentos de ingreso de Supabase Auth está activo.
+- [ ] No se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
 - [ ] Los mensajes de error no muestran datos internos.
 - [ ] El sitio publicado responde por HTTPS.
 - [ ] Hay una copia de seguridad reciente de la base.
