@@ -169,7 +169,7 @@ iest-tfi_urban-style/
 | `plan.md` | Cómo se va a construir: archivos, datos y decisiones | Respeta esta arquitectura y la constitución |
 | `tasks.md` | Lista de tareas chicas, en orden | Se marcan con `[x]` al terminarlas y probarlas |
 | `verificacion.md` | Comprobación de cada criterio de aceptación, con su resultado | Se completa antes de dar la funcionalidad por terminada |
-| `.claude/commands/` | Comandos de Claude Code: `/spec`, `/clarificar` y `/verificar` | Cada comando genera o completa el archivo del mismo nombre dentro de `specs/` |
+| `.claude/commands/` | Comandos de Claude Code: `/spec`, `/clarificar` y `/verificar` | `/spec` completa `spec.md`, `/clarificar` completa `clarificacion.md` y `/verificar` completa `verificacion.md`, dentro de la carpeta de la funcionalidad en `specs/` |
 | `.claude/skills/` | Skills de Claude Code: `verificar-criterios` y una skill propia | Cada skill tiene su carpeta con su `SKILL.md` |
 | `multimedia/` | Imágenes, video y gráficos del TFI | Cada pieza generada con IA tiene su ficha en `FICHAS-IA.md` y lleva la leyenda «Generado con IA» |
 
