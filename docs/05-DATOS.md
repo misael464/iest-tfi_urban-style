@@ -743,8 +743,10 @@ GRANT EXECUTE ON FUNCTION cancelar_pedido(INTEGER)                             T
 ## Datos de demostración
 
 > **Datos ficticios.** Los productos de esta sección son ejemplos para probar
-> el sitio. Los precios quedan en `0` como marcador: no se inventan precios
-> reales. Se reemplazan desde el panel cuando el negocio defina su catálogo.
+> el sitio, y cada uno lo dice en su descripción («Producto de demostración»).
+> Sus precios son **de ejemplo**, no precios reales del negocio: sirven para
+> probar subtotales, totales y el mensaje de WhatsApp. Se reemplazan cuando el
+> negocio defina su catálogo.
 
 ```sql
 -- db/datos-demo.sql · DATOS DE DEMOSTRACIÓN (ficticios)
@@ -763,13 +765,14 @@ INSERT INTO colores (nombre, hex) VALUES
   ('Blanco', '#FFFFFF'),
   ('Gris',   '#808080');
 
+-- Precios de ejemplo: no son precios reales del negocio.
 INSERT INTO productos (categoria_id, nombre, slug, descripcion, precio, destacado) VALUES
   (1, 'Remera Demo Oversize', 'remera-demo-oversize',
-      'Producto de demostración. Remera de algodón de corte holgado.', 0, TRUE),
+      'Producto de demostración. Remera de algodón de corte holgado.', 10000, TRUE),
   (2, 'Buzo Demo Canguro',    'buzo-demo-canguro',
-      'Producto de demostración. Buzo con capucha y bolsillo delantero.', 0, TRUE),
+      'Producto de demostración. Buzo con capucha y bolsillo delantero.', 20000, TRUE),
   (3, 'Pantalón Demo Cargo',  'pantalon-demo-cargo',
-      'Producto de demostración. Pantalón con bolsillos laterales.', 0, FALSE);
+      'Producto de demostración. Pantalón con bolsillos laterales.', 15000, FALSE);
 
 INSERT INTO producto_imagenes (producto_id, ruta, texto_alternativo, orden) VALUES
   (1, '/img/productos/remera-demo-oversize-negro.webp',

@@ -109,7 +109,7 @@ Recursos de marca: [marca/logo.svg](marca/logo.svg),
 ### Información del negocio
 
 - **No inventar** precios reales, números de teléfono, direcciones, horarios, redes sociales, correos ni promociones.
-- Los precios de ejemplo quedan en `$ 0`, como marcador.
+- Los productos de demostración tienen precios de ejemplo, no reales, y lo dicen en su descripción («Producto de demostración»).
 - Los datos de prueba se identifican con la palabra “Demo” o “demostración”.
 - El número de WhatsApp es un valor de configuración **pendiente de completar**:
 
