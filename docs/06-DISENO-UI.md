@@ -97,7 +97,7 @@ queda definido acá para cuando se construyan.
 - Fondo Marfil con una línea inferior de 2 px en Negro carbón. Queda fijo
   arriba al desplazarse.
 - A la izquierda, el logo principal (`logo.svg`), con 40 px de alto como mínimo.
-- Enlaces: **Inicio** y **Catálogo**, en Montserrat Bold de 14 px. **Contacto** se suma en la segunda etapa.cuando exista la página.
+- Enlaces: **Inicio** y **Catálogo**, en Montserrat Bold de 14 px. **Contacto** se suma en la segunda etapa, cuando exista la página.
 - El encabezado se escribe en cada archivo HTML; el JS solo abre el menú en
   el celular, marca la página actual y actualiza el contador.
 - A la derecha, el acceso al carrito con un contador (círculo Beige con

@@ -102,7 +102,7 @@ iest-tfi_urban-style/
 ├── robots.txt                        ← qué pueden recorrer los buscadores
 ├── docs/                             ← estas especificaciones
 │   ├── CONSTITUCION.md               ← (proceso) principios que no se negocian
-│   ├── PROMPTS.md                    ← (proceso) registro de prompts
+│   ├── PROMPTS.md                    ← (proceso) prompts importantes y errores de la IA
 │   └── DECLARACION-IA.md             ← (proceso) declaración de uso de IA
 ├── specs/                            ← (proceso) una carpeta por funcionalidad
 │   ├── 001-catalogo/
@@ -151,7 +151,7 @@ iest-tfi_urban-style/
 | `js/componentes/` | Funciones que reciben datos y devuelven elementos del DOM | Arman los elementos con `createElement` y `textContent`, nunca con `innerHTML` |
 | `js/paginas/` | El punto de partida de cada página | Lee los parámetros de la dirección, pide datos a `js/lib/` y usa los componentes |
 | `db/` | Todo el SQL del proyecto | `esquema.sql` coincide siempre con [05-DATOS.md](05-DATOS.md) |
-| `tests/` | Un archivo de tests por cada módulo de `js/lib/` sin Supabase | Se ejecutan con `npm test` antes de cada commit |
+| `tests/` | Un archivo de tests por cada módulo de `js/lib/` sin Supabase | Se ejecutan con `npm test` antes de cada commit que toque `js/` |
 | `img/` | Imágenes que se sirven tal cual | Las fotos se guardan optimizadas (ver [09-SEO.md](09-SEO.md)) |
 
 ### Proceso del TFI
@@ -161,7 +161,7 @@ iest-tfi_urban-style/
 | `CLAUDE.md` | Instrucciones que Claude Code lee al empezar cada sesión | Remite a [../AGENTS.md](../AGENTS.md); no repite ni contradice sus reglas |
 | `memory.md` | Memoria del proyecto: decisiones tomadas y contexto que conviene recordar entre sesiones | Se actualiza al cerrar cada sesión de trabajo |
 | `docs/CONSTITUCION.md` | Principios del proyecto que no se negocian | Se lee antes de cada spec, plan o tarea |
-| `docs/PROMPTS.md` | Registro de los prompts usados con la IA | Se agrega cada prompt importante con su fecha y su resultado |
+| `docs/PROMPTS.md` | Registro de los prompts importantes y de los errores de la IA con su corrección | Se agrega cada prompt importante con su fecha y su resultado, y cada error de la IA con cómo se corrigió |
 | `docs/DECLARACION-IA.md` | Declaración de qué se hizo con IA y qué no | Se mantiene al día hasta la entrega |
 | `specs/NNN-nombre/` | Una carpeta por funcionalidad, numerada en orden | Siempre tiene los cinco archivos de abajo |
 | `spec.md` | Qué tiene que hacer la funcionalidad y sus criterios de aceptación | Se escribe antes que el código |
