@@ -29,7 +29,7 @@
 - Confirmar la última versión estable de `supabase-js` (hoy figura `@2.45.4`).
 - Probar el SQL de `db/` en Supabase: todavía no se ejecutó.
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
-- Crear `docs/PROMPTS.md`, `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
+- Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
 
 ## Errores de la IA ya vistos
 
@@ -42,3 +42,5 @@ El detalle de cada uno está en `docs/PROMPTS.md`.
 5. En el ejemplo de sitemap.xml puso un comentario antes de `<?xml>`.
 6. Dejó ediciones pendientes que iban a pisar cambios hechos a mano en
    AGENTS.md; el autor las rechazó.
+7. En /spec buscaba el nombre de la carpeta en una tabla de 02 que no lo
+   tiene; se agregó la tabla de equivalencias.
