@@ -45,7 +45,7 @@ Las etapas 8 y 9 quedan fuera del TFI y pasan a una segunda etapa (ver “Alcanc
 - [ ] Crear `package.json` con `"type": "module"` y el comando `"test": "vitest run"`.
 - [ ] Instalar Vitest como dependencia de desarrollo (`npm install --save-dev vitest`).
 - [ ] Crear `.gitignore` con `node_modules/`.
-- [ ] Armar las carpetas de [04-ARQUITECTURA.md](04-ARQUITECTURA.md).
+- [ ] Crear cada carpeta de [04-ARQUITECTURA.md](04-ARQUITECTURA.md) cuando le toca su primer archivo.
 - [ ] Crear `js/config/sitio.js` con los datos del negocio marcados como pendientes.
 - [ ] Crear `js/config/supabase.js` con la URL y la clave anon marcadas como pendientes.
 - [ ] Crear un `index.html` mínimo con su `<title>`, su `meta description` y su `<h1>`.
