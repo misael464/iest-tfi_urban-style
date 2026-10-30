@@ -62,7 +62,7 @@ Se agrega solo lo necesario. Cada elemento tiene su justificación.
 | Elemento | Tipo | Cómo se incorpora | Justificación |
 | --- | --- | --- | --- |
 | `@supabase/supabase-js` | Biblioteca del navegador | Módulo ES desde jsDelivr, con versión fija, importado **solo** en `js/lib/supabase.js` | Es el cliente oficial para leer datos, llamar a las funciones RPC y usar Supabase Auth |
-| Vitest | Herramienta de desarrollo | `npm install --save-dev vitest` | Ejecuta los tests. No llega al sitio publicado |
+| Vitest | Herramienta de desarrollo | `npm install --save-dev vitest@3` | Ejecuta los tests. No llega al sitio publicado |
 
 ```javascript
 // js/lib/supabase.js · único archivo que importa supabase-js
@@ -144,7 +144,7 @@ repositorio que ya existe, `iest-tfi_urban-style`.
 ```bash
 cd iest-tfi_urban-style
 npm init -y
-npm install --save-dev vitest
+npm install --save-dev vitest@3
 ```
 
 En `package.json` se agrega el comando de tests:
@@ -162,7 +162,8 @@ En `package.json` se agrega el comando de tests:
 
 ## Requisitos para ejecutar el proyecto
 
-1. Node.js en su versión LTS vigente y npm (solo para ejecutar los tests).
+1. Node.js y npm (solo para ejecutar los tests). El proyecto usa Vitest 3
+   porque el entorno de desarrollo tiene Node.js 20.13.
 2. Git instalado y una cuenta de GitHub.
 3. Un proyecto en Supabase.
 4. Visual Studio Code u otro editor, con un servidor local de archivos

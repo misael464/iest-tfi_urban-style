@@ -42,15 +42,15 @@ Las etapas 8 y 9 quedan fuera del TFI y pasan a una segunda etapa (ver “Alcanc
 
 ## Etapa 1 · Preparación del proyecto
 
-- [ ] Crear `package.json` con `"type": "module"` y el comando `"test": "vitest run"`.
-- [ ] Instalar Vitest como dependencia de desarrollo (`npm install --save-dev vitest`).
-- [ ] Crear `.gitignore` con `node_modules/`.
-- [ ] Crear cada carpeta de [04-ARQUITECTURA.md](04-ARQUITECTURA.md) cuando le toca su primer archivo.
-- [ ] Crear `js/config/sitio.js` con los datos del negocio marcados como pendientes.
-- [ ] Crear `js/config/supabase.js` con la URL y la clave anon marcadas como pendientes.
-- [ ] Crear un `index.html` mínimo con su `<title>`, su `meta description` y su `<h1>`.
-- [ ] Escribir un primer test y comprobar que `npm test` pasa.
-- [ ] Subir el commit a GitHub.
+- [x] Crear `package.json` con `"type": "module"` y el comando `"test": "vitest run"`.
+- [x] Instalar Vitest como dependencia de desarrollo (`npm install --save-dev vitest@3`).
+- [x] Crear `.gitignore` con `node_modules/`.
+- [x] Crear cada carpeta de [04-ARQUITECTURA.md](04-ARQUITECTURA.md) cuando le toca su primer archivo.
+- [x] Crear `js/config/sitio.js` con los datos del negocio marcados como pendientes.
+- [x] Crear `js/config/supabase.js` con la URL y la clave anon marcadas como pendientes.
+- [x] Crear un `index.html` mínimo con su `<title>`, su `meta description` y su `<h1>`.
+- [x] Escribir un primer test y comprobar que `npm test` pasa.
+- [x] Subir el commit a GitHub.
 
 **Criterio de terminado:** `index.html` se abre con el servidor local sin
 errores en la consola, `npm test` pasa y el repositorio está en GitHub sin
@@ -219,5 +219,6 @@ y las especificaciones describen lo que efectivamente se construyó.
 | Etapa | Estado |
 | --- | --- |
 | Especificación (esta carpeta) | Terminada |
+| 1 · Preparación del proyecto | Terminada (30/10/2026) |
 | 2 · Identidad visual | En curso: marca y logo definidos; falta aplicarlos al sitio |
 | Resto de las etapas | Sin empezar |

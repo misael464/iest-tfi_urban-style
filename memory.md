@@ -6,8 +6,8 @@
 
 - La especificación de `docs/` está actualizada al nuevo stack (28/10/2026).
 - `docs/CONSTITUCION.md` está creada, con los principios P1 a P8.
-- El sitio todavía no está programado.
-- Próximo paso: etapa 1 de `docs/08-TAREAS.md` y `/spec` de `specs/001-catalogo/`.
+- La Etapa 1 está terminada (30/10/2026).
+- Próximo paso: `/spec 001-catalogo` y las etapas 2 y 3 de `docs/08-TAREAS.md`.
 
 ## Decisiones tomadas
 
@@ -21,6 +21,7 @@
 | 28/10/2026 | Se crea la constitución (P1 a P8) |
 | 30/10/2026 | Se crean /spec, /clarificar y /verificar; verificacion.md usa una casilla por CA con su evidencia |
 | 30/10/2026 | Se crean las skills verificar-criterios y revisar-marca (skill propia) |
+| 30/10/2026 | Se usa Vitest 3 porque el entorno tiene Node 20.13 |
 
 ## Pendientes
 
@@ -30,6 +31,7 @@
 - Probar el SQL de `db/` en Supabase: todavía no se ejecutó.
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
+- Favicon: el 404 de `favicon.ico` se resuelve en la Etapa 2 con el isotipo.
 
 ## Errores de la IA ya vistos
 
