@@ -19,17 +19,17 @@
 | 27/10/2026 | El stock se descuenta en `confirmar_pedido`, no al crear el pedido |
 | 27/10/2026 | Los productos de demostración lo dicen en su descripción («Producto de demostración») y tienen precios de ejemplo, no $ 0 |
 | 28/10/2026 | Se crea la constitución (P1 a P8) |
+| 30/10/2026 | Se crean /spec, /clarificar y /verificar; verificacion.md usa una casilla por CA con su evidencia |
+| 30/10/2026 | Se crean las skills verificar-criterios y revisar-marca (skill propia) |
 
 ## Pendientes
 
 - Datos del negocio en `js/config/sitio.js`: WhatsApp, horarios, redes y correo.
 - Dominio definitivo: reemplazar `DOMINIO-PENDIENTE` (HTML, `sitemap.xml` y `robots.txt`).
-- Nombre de la skill propia (`.claude/skills/SKILL-PROPIA/`).
 - Confirmar la última versión estable de `supabase-js` (hoy figura `@2.45.4`).
 - Probar el SQL de `db/` en Supabase: todavía no se ejecutó.
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/PROMPTS.md`, `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
-- Definir el formato de `verificacion.md`: P1 supone casillas `- [ ]` / `- [x]`.
 
 ## Errores de la IA ya vistos
 
