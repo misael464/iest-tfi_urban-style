@@ -1,10 +1,6 @@
 # Dependencias
 node_modules/
 
-# Next.js
-.next/
-out/
-
 # Variables de entorno: nunca se suben
 .env
 .env.local
