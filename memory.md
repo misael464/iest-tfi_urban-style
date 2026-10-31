@@ -31,7 +31,6 @@
 - Probar el SQL de `db/` en Supabase: todavía no se ejecutó.
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
-- Favicon: el 404 de `favicon.ico` se resuelve en la Etapa 2 con el isotipo.
 
 ## Errores de la IA ya vistos
 

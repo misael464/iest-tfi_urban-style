@@ -185,7 +185,7 @@ Reglas del tono:
 
 ## Variables CSS
 
-Se copian tal cual en `app/globals.css`. El código usa **siempre** estas
+Se copian tal cual en `css/globales.css`. El código usa **siempre** estas
 variables. Si la marca cambia un color, se edita una sola línea.
 
 ```css
