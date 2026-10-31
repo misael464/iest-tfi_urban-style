@@ -1,0 +1,109 @@
+/* css/globales.css · variables de marca y estilos base.
+   Es el único archivo del sitio con valores HEX (P3). */
+
+:root {
+  /* Colores */
+  --color-principal: #171717;  /* Negro carbón */
+  --color-acento: #E8CDA8;     /* Beige */
+  --color-fondo: #F7F5F0;      /* Marfil */
+  --color-secundario: #777777; /* Gris medio */
+
+  /* Tipografías */
+  --fuente-titulos: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --fuente-textos: "Inter", "Segoe UI", Arial, sans-serif;
+  --peso-titulos: 700;
+  --peso-textos: 400;
+
+  /* Formas y espacios */
+  --radio-borde: 2px;
+  --borde: 2px solid var(--color-principal);
+  --espacio-1: 4px;
+  --espacio-2: 8px;
+  --espacio-3: 16px;
+  --espacio-4: 24px;
+  --espacio-5: 32px;
+  --espacio-6: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-textos);
+  font-weight: var(--peso-textos);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-principal);
+  background: var(--color-fondo);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  color: var(--color-principal);
+  line-height: 1.2;
+}
+
+/* Escala de tamaños: celular primero */
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+small {
+  font-size: 14px;
+}
+
+/* Computadora: desde 1024 px, el corte de 06-DISENO-UI.md */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+a {
+  color: var(--color-principal);
+}
+
+/* Foco visible: contorno de 3 px separado 3 px del elemento */
+:focus-visible {
+  outline: 3px solid var(--color-principal);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Si la persona pidió reducir el movimiento, no hay animaciones */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
