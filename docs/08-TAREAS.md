@@ -63,7 +63,7 @@ archivos secretos.
 - [x] Cargar las variables CSS de la marca en `css/globales.css`.
 - [x] Cargar Montserrat Bold (700) e Inter Regular (400) desde Google Fonts con `<link>`, sin otros pesos.
 - [x] Copiar `logo.svg`, `logo-oscuro.svg` e `isotipo.svg` a `img/marca/` y usar el isotipo como ícono del sitio.
-- [ ] Escribir el encabezado y el pie en HTML, con `encabezado.css`, `pie-de-pagina.css` y `js/componentes/encabezado.js` para el menú del celular (RNF01, RNF02).
+- [x] Escribir el encabezado y el pie en HTML, con `encabezado.css`, `pie-de-pagina.css` y `js/componentes/encabezado.js` para el menú del celular (RNF01, RNF02).
 - [ ] Crear `boton.css`, `mensaje.css` y `js/componentes/mensaje.js` (RNF01, RNF02).
 
 **Criterio de terminado:** el encabezado y el pie se ven en todas las páginas
