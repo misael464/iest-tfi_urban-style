@@ -16,10 +16,62 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Montserrat:wght@700&display=swap"
     />
     <link rel="stylesheet" href="/css/globales.css" />
+    <link rel="stylesheet" href="/css/componentes/encabezado.css" />
+    <link rel="stylesheet" href="/css/componentes/pie-de-pagina.css" />
+    <script type="module" src="/js/paginas/inicio.js"></script>
   </head>
   <body>
-    <main>
+    <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+    <header class="encabezado">
+      <div class="contenedor encabezado-interior">
+        <a class="encabezado-logo" href="/">
+          <img src="/img/marca/logo.svg" alt="Urban Style" width="168" height="40" />
+        </a>
+
+        <button
+          class="encabezado-boton-menu"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          data-boton-menu
+          hidden
+        >
+          Menú
+        </button>
+
+        <nav class="encabezado-nav" id="menu-principal" aria-label="Principal" data-navegacion>
+          <ul class="encabezado-enlaces">
+            <li><a class="encabezado-enlace" href="/">Inicio</a></li>
+            <li><a class="encabezado-enlace" href="/catalogo.html">Catálogo</a></li>
+          </ul>
+        </nav>
+
+        <a class="encabezado-carrito" href="/carrito.html">
+          Carrito
+          <span class="encabezado-contador" id="contador-carrito">0</span>
+          <span class="visualmente-oculto">productos</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="contenedor" id="contenido">
       <h1>Tu estilo, tus reglas</h1>
     </main>
+
+    <footer class="pie-de-pagina">
+      <div class="contenedor pie-de-pagina-interior">
+        <a class="pie-de-pagina-logo" href="/">
+          <img src="/img/marca/logo-oscuro.svg" alt="Urban Style" width="168" height="40" loading="lazy" />
+        </a>
+
+        <nav aria-label="Pie de página" data-navegacion>
+          <ul class="pie-de-pagina-enlaces">
+            <li><a class="pie-de-pagina-enlace" href="/">Inicio</a></li>
+            <li><a class="pie-de-pagina-enlace" href="/catalogo.html">Catálogo</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>

@@ -39,6 +39,17 @@ body {
   line-height: 1.5;
   color: var(--color-principal);
   background: var(--color-fondo);
+  /* El pie queda al fondo de la pantalla aunque haya poco contenido */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El ancho del 100 % hace falta porque, en una columna flex, el margen
+   automático de .contenedor achicaría el main al ancho de su contenido */
+main {
+  flex-grow: 1;
+  width: 100%;
 }
 
 h1,
@@ -106,4 +117,48 @@ img {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Ancho máximo del contenido: 1200 px, centrado, con margen lateral */
+.contenedor {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--espacio-3);
+}
+
+/* Enlace para saltar al contenido: aparece solo al recibir el foco */
+.salto-contenido {
+  position: absolute;
+  top: var(--espacio-2);
+  left: var(--espacio-3);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--espacio-2) var(--espacio-3);
+  background: var(--color-acento);
+  color: var(--color-principal);
+  border: var(--borde);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.salto-contenido:focus {
+  transform: none;
+}
+
+/* Texto que no se ve pero que leen los lectores de pantalla */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

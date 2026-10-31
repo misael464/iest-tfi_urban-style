@@ -1,0 +1,143 @@
+/* css/componentes/encabezado.css */
+
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-fondo);
+  border-bottom: var(--borde);
+}
+
+.encabezado-interior {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-2);
+  padding-block: var(--espacio-2);
+}
+
+.encabezado-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-right: auto;
+}
+
+.encabezado-logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.encabezado-boton-menu {
+  min-height: 44px;
+  padding: 0 var(--espacio-3);
+  background: transparent;
+  color: var(--color-principal);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.encabezado-boton-menu:hover {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+}
+
+/* Sin JS, el botón queda oculto y los enlaces se ven debajo del logo */
+.encabezado-nav {
+  flex-basis: 100%;
+  order: 1;
+}
+
+/* Con JS, en el celular los enlaces se abren como un menú debajo del encabezado */
+.encabezado-boton-menu:not([hidden]) + .encabezado-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  order: 0;
+  background: var(--color-fondo);
+  border-bottom: var(--borde);
+}
+
+.encabezado-boton-menu:not([hidden])[aria-expanded="false"] + .encabezado-nav {
+  display: none;
+}
+
+.encabezado-enlaces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.encabezado-enlace {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  color: var(--color-principal);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.encabezado-enlace:hover,
+.encabezado-enlace[aria-current="page"] {
+  border-bottom-color: var(--color-principal);
+}
+
+.encabezado-carrito {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: 44px;
+  padding: 0 var(--espacio-2);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.encabezado-contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 var(--espacio-1);
+  border-radius: 12px;
+  background: var(--color-acento);
+  color: var(--color-principal);
+  font-size: 14px;
+}
+
+/* Tableta y computadora: los enlaces se ven siempre, sin botón "Menú" */
+@media (min-width: 768px) {
+  .encabezado-boton-menu {
+    display: none;
+  }
+
+  .encabezado-nav,
+  .encabezado-boton-menu:not([hidden]) + .encabezado-nav,
+  .encabezado-boton-menu:not([hidden])[aria-expanded="false"] + .encabezado-nav {
+    position: static;
+    display: block;
+    flex-basis: auto;
+    order: 0;
+    background: transparent;
+    border-bottom: 0;
+  }
+
+  .encabezado-enlaces {
+    display: flex;
+    gap: var(--espacio-2);
+  }
+}
