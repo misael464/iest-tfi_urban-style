@@ -74,8 +74,8 @@ registrarse.
 
 ## Alcance inicial
 
-El primer lanzamiento es el del Trabajo Final Integrador (plazo: 30 de
-octubre de 2026) y se limita a la tienda:
+El primer lanzamiento es el del Trabajo Final Integrador (plazo: martes 3 de
+noviembre de 2026) y se limita a la tienda:
 
 | Funcionalidad | Requerimientos | Incluye |
 | --- | --- | --- |

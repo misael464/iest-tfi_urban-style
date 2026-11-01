@@ -71,7 +71,7 @@ Se cumple cuando funcionan RF07, RF09, RF10, RF11, RF12 y RF13.
 
 ## Alcance del Trabajo Final Integrador
 
-El TFI tiene plazo hasta el 30 de octubre de 2026. Para entregar un producto
+El TFI tiene plazo hasta el martes 3 de noviembre de 2026. Para entregar un producto
 completo, probado y publicado, el primer lanzamiento se limita a la tienda.
 
 | Funcionalidad SDD | Requerimientos | Carpeta |
@@ -119,3 +119,4 @@ actualizar antes este archivo y [01-CONTEXTO.md](01-CONTEXTO.md).
 | 27/10/2026 | RF12: la validación del pedido la hace la función `crear_pedido` en Supabase | Sin servidor propio, la función de la base cumple el rol del servidor |
 | 27/10/2026 | Alcance del TFI: RF01 a RF13. Contacto (RF14 y RF15) y panel (RF16 a RF22) pasan a una segunda etapa; RF16, RF17, RF19, RF20 y RF21 bajan de prioridad Alta a Media | Plazo de entrega; el panel web de Supabase cubre la gestión mientras tanto |
 | 27/10/2026 | RNF03: la meta de Lighthouse pasa a 80 puntos o más en las cuatro categorías | Es el requisito de la consigna del TFI |
+| 31/10/2026 | Plazo del TFI: pasa del 30 de octubre al martes 3 de noviembre de 2026 | La docente extendió la fecha de entrega |
