@@ -1,0 +1,86 @@
+/* css/componentes/boton.css
+   Uso: class="boton boton-principal" (o -secundario, -oscuro, -texto). */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-2);
+  min-height: 44px;
+  padding: 0 var(--espacio-4);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Presionado: baja 1 px */
+.boton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Principal: Beige con texto y borde Negro carbón */
+.boton-principal {
+  background: var(--color-acento);
+  color: var(--color-principal);
+}
+
+.boton-principal:hover:not(:disabled) {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+}
+
+/* Secundario: transparente con texto y borde Negro carbón */
+.boton-secundario {
+  background: transparent;
+  color: var(--color-principal);
+}
+
+.boton-secundario:hover:not(:disabled) {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+}
+
+/* Sobre fondo oscuro: Beige sin borde visible.
+   El borde transparente mantiene el tamaño igual al de los otros botones. */
+.boton-oscuro {
+  background: var(--color-acento);
+  color: var(--color-principal);
+  border-color: transparent;
+}
+
+.boton-oscuro:hover:not(:disabled) {
+  background: var(--color-fondo);
+}
+
+/* Sobre Negro carbón, el foco es Beige */
+.boton-oscuro:focus-visible {
+  outline-color: var(--color-acento);
+}
+
+/* De texto: sin fondo ni borde, subrayado */
+.boton-texto {
+  padding: 0 var(--espacio-1);
+  background: transparent;
+  color: var(--color-principal);
+  border-color: transparent;
+  text-decoration: underline;
+}
+
+.boton-texto:hover:not(:disabled) {
+  border-color: var(--color-principal);
+}
+
+/* Deshabilitado y cargando: texto y borde Gris medio */
+.boton:disabled,
+.boton[aria-disabled="true"] {
+  background: transparent;
+  color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  cursor: not-allowed;
+}

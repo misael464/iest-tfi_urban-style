@@ -1,0 +1,48 @@
+/* css/componentes/mensaje.css
+   Uso: lo arma crearMensaje() de js/componentes/mensaje.js. */
+
+.mensaje {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+  padding: var(--espacio-3);
+  border: 2px solid transparent;
+  border-radius: var(--radio-borde);
+  color: var(--color-principal);
+}
+
+.mensaje-icono {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: var(--borde);
+  border-radius: 12px;
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mensaje-texto {
+  margin: 0;
+}
+
+/* Confirmación: fondo Beige, texto Negro carbón, ícono de tilde */
+.mensaje-confirmacion {
+  background: var(--color-acento);
+}
+
+/* Error: fondo Marfil, borde izquierdo de 6 px Negro carbón, ícono "!" */
+.mensaje-error {
+  background: var(--color-fondo);
+  border-left: 6px solid var(--color-principal);
+}
+
+/* Información: fondo Marfil, borde de 2 px Gris medio, ícono "i" */
+.mensaje-informacion {
+  background: var(--color-fondo);
+  border-color: var(--color-secundario);
+}
