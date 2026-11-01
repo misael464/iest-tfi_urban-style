@@ -732,6 +732,12 @@ REVOKE ALL ON FUNCTION confirmar_pedido(INTEGER)                            FROM
 REVOKE ALL ON FUNCTION entregar_pedido(INTEGER)                             FROM PUBLIC;
 REVOKE ALL ON FUNCTION cancelar_pedido(INTEGER)                             FROM PUBLIC;
 
+-- Supabase les da EXECUTE a anon de forma explícita en cada función nueva:
+-- el REVOKE FROM PUBLIC no alcanza para sacárselo en las funciones del panel.
+REVOKE EXECUTE ON FUNCTION confirmar_pedido(INTEGER) FROM anon;
+REVOKE EXECUTE ON FUNCTION entregar_pedido(INTEGER)  FROM anon;
+REVOKE EXECUTE ON FUNCTION cancelar_pedido(INTEGER)  FROM anon;
+
 GRANT EXECUTE ON FUNCTION buscar_productos(TEXT, TEXT, TEXT[], TEXT[], BOOLEAN) TO anon, authenticated;
 GRANT EXECUTE ON FUNCTION crear_pedido(TEXT, JSONB)                            TO anon, authenticated;
 GRANT EXECUTE ON FUNCTION crear_consulta(TEXT, TEXT, TEXT, TEXT)               TO anon, authenticated;
