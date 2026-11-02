@@ -10,6 +10,9 @@ const TIPOS_DE_MENSAJE = {
 
 const PREFIJO_ERROR = "Error:";
 
+// Texto para cualquier error inesperado (10-SEGURIDAD.md).
+export const TEXTO_ERROR_GENERICO = "Algo salió mal. Probá de nuevo en un momento.";
+
 export function crearMensaje(tipo, texto) {
   const configuracion = TIPOS_DE_MENSAJE[tipo];
   if (!configuracion) {

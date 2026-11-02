@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="/css/globales.css" />
     <link rel="stylesheet" href="/css/componentes/encabezado.css" />
     <link rel="stylesheet" href="/css/componentes/pie-de-pagina.css" />
+    <link rel="stylesheet" href="/css/componentes/boton.css" />
+    <link rel="stylesheet" href="/css/componentes/mensaje.css" />
+    <link rel="stylesheet" href="/css/componentes/tarjeta-producto.css" />
+    <link rel="stylesheet" href="/css/paginas/inicio.css" />
     <script type="module" src="/js/paginas/inicio.js"></script>
   </head>
   <body>
@@ -55,8 +59,26 @@
       </div>
     </header>
 
-    <main class="contenedor" id="contenido">
-      <h1>Tu estilo, tus reglas</h1>
+    <main id="contenido">
+      <section class="inicio-banner" aria-labelledby="titulo-inicio">
+        <div class="contenedor">
+          <h1 class="inicio-banner-titulo" id="titulo-inicio">Tu estilo, tus reglas</h1>
+          <p class="inicio-banner-texto">Encontrá tu próximo look y combiná las prendas a tu manera.</p>
+          <a class="boton boton-oscuro" href="/catalogo.html">Ver catálogo</a>
+        </div>
+      </section>
+
+      <div class="contenedor" id="avisos-inicio"></div>
+
+      <section class="contenedor inicio-seccion" id="seccion-destacados" aria-labelledby="titulo-destacados" hidden>
+        <h2 id="titulo-destacados">Destacados</h2>
+        <div id="destacados"></div>
+      </section>
+
+      <section class="contenedor inicio-seccion" aria-labelledby="titulo-categorias">
+        <h2 id="titulo-categorias">Categorías</h2>
+        <ul class="inicio-categorias" id="categorias"></ul>
+      </section>
     </main>
 
     <footer class="pie-de-pagina">

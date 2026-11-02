@@ -1,0 +1,41 @@
+/* css/paginas/catalogo.css */
+
+.catalogo {
+  padding-block: var(--espacio-5);
+}
+
+.catalogo-titulo {
+  margin: 0 0 var(--espacio-2);
+}
+
+.catalogo-cantidad {
+  margin: 0 0 var(--espacio-4);
+}
+
+.catalogo-buscador {
+  margin-bottom: var(--espacio-4);
+}
+
+.catalogo-buscador-fila {
+  display: flex;
+  gap: var(--espacio-2);
+}
+
+.catalogo-cuerpo {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+/* Computadora: filtros en una columna a la izquierda de la grilla (CA26) */
+@media (min-width: 1024px) {
+  .catalogo-cuerpo {
+    grid-template-columns: 240px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* min-width: 0 deja que el campo se achique a 360 px sin desbordar */
+.catalogo-buscador-fila .formulario-campo {
+  flex: 1;
+  min-width: 0;
+}

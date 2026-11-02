@@ -1,0 +1,58 @@
+/* css/paginas/inicio.css */
+
+/* Banner: fondo Negro carbón con el eslogan en Marfil */
+.inicio-banner {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+  padding-block: var(--espacio-6);
+}
+
+.inicio-banner-titulo {
+  margin: 0 0 var(--espacio-3);
+  color: var(--color-fondo);
+}
+
+.inicio-banner-texto {
+  max-width: 40ch;
+  margin: 0 0 var(--espacio-4);
+}
+
+.inicio-seccion {
+  padding-block: var(--espacio-5);
+}
+
+/* Un acceso por categoría: 2 columnas en celular, 4 desde tableta */
+.inicio-categorias {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-3);
+}
+
+@media (min-width: 768px) {
+  .inicio-categorias {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.inicio-categoria {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--espacio-4) var(--espacio-3);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 16px;
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.inicio-categoria:hover {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+}

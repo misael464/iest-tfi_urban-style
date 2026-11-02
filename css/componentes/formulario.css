@@ -1,0 +1,22 @@
+/* css/componentes/formulario.css
+   Etiquetas y campos de formulario (06-DISENO-UI.md). */
+
+/* La etiqueta va visible, arriba del campo */
+.formulario-etiqueta {
+  display: block;
+  margin-bottom: var(--espacio-1);
+  font-size: 14px;
+}
+
+.formulario-campo {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--espacio-3);
+  background: var(--color-fondo);
+  color: var(--color-principal);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-textos);
+  font-weight: var(--peso-textos);
+  font-size: 16px;
+}

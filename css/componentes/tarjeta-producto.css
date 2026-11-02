@@ -1,0 +1,112 @@
+/* css/componentes/tarjeta-producto.css
+   Tarjeta de producto, etiqueta de disponibilidad y grilla. */
+
+/* Grilla: 2 columnas en celular, 3 en tableta y 4 en computadora */
+.grilla-productos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-3);
+}
+
+@media (min-width: 768px) {
+  .grilla-productos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espacio-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grilla-productos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Toda la tarjeta es un enlace al detalle */
+.tarjeta-producto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  height: 100%;
+  padding: var(--espacio-2);
+  border: 2px solid transparent;
+  border-radius: var(--radio-borde);
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.tarjeta-producto:hover,
+.tarjeta-producto:focus-visible {
+  border-color: var(--color-principal);
+}
+
+/* Foto en proporción 4:5 */
+.tarjeta-producto-marco {
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+
+.tarjeta-producto-imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Agotado: la foto se atenúa sin transparencias, pasándola a grises */
+.tarjeta-producto-agotada .tarjeta-producto-imagen {
+  filter: grayscale(1);
+}
+
+.tarjeta-producto-sin-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: var(--borde);
+  font-size: 14px;
+}
+
+.tarjeta-producto-nombre {
+  margin: 0;
+  font-size: 16px;
+}
+
+.tarjeta-producto-precio {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 18px;
+}
+
+/* Etiqueta de disponibilidad: sobre la esquina superior izquierda de la foto */
+.etiqueta-disponibilidad {
+  position: absolute;
+  top: var(--espacio-2);
+  left: var(--espacio-2);
+  padding: var(--espacio-1) var(--espacio-2);
+  border: 2px solid transparent;
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 14px;
+}
+
+.etiqueta-disponibilidad-disponible {
+  background: var(--color-acento);
+  color: var(--color-principal);
+}
+
+.etiqueta-disponibilidad-pocas {
+  background: var(--color-fondo);
+  color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.etiqueta-disponibilidad-agotado {
+  background: var(--color-principal);
+  color: var(--color-fondo);
+}
