@@ -66,6 +66,7 @@ que se escriba el archivo, y exigir que cada regla tenga una comprobación.
 | 5 | 27/10/2026 | 09-SEO.md | En el ejemplo de `sitemap.xml` puso un comentario antes de `<?xml`, que tiene que ser la primera línea | Revisando el ejemplo | Se borró la línea del comentario |
 | 6 | 27/10/2026 | AGENTS.md | Dejó ediciones pendientes que iban a pisar los cambios hechos a mano | Al ver la propuesta en modo Manual | El autor la rechazó con «No» |
 | 7 | 30/10/2026 | .claude/commands/spec.md | El comando buscaba el nombre de la carpeta (`001-catalogo`) en una tabla de 02 que no lo tiene: habría frenado en el primer uso | Revisando el borrador antes de aprobarlo | Se agregó la tabla de equivalencias entre carpetas, funcionalidades y RF |
+| 8 | 02/11/2026 | specs/001-catalogo (tareas 8 y 9, en el chat) | Al cerrar cada tarea escribió el resultado esperado en tono afirmativo (“tiene que quedar solo el buzo”), sin decir que era una prueba pendiente para el autor, y se pudo leer como un resultado ya comprobado. La IA no puede usar el navegador | El autor lo leyó como si la IA hubiera probado; al revisarlo juntos se vio que era una instrucción mal redactada | De acá en adelante, la IA escribe “**Prueba pendiente (la hacés vos):** …” y, aparte, lo que comprobó ella misma (por ejemplo, `npm test`) |
 
 ### Lecciones
 

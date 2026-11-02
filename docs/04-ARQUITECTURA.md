@@ -41,6 +41,7 @@ iest-tfi_urban-style/
 │   │   ├── selector-variante.css
 │   │   ├── item-carrito.css
 │   │   ├── formulario.css
+│   │   ├── estado-vacio.css
 │   │   └── mensaje.css
 │   └── paginas/                      ← lo propio de cada página
 │       ├── inicio.css
@@ -63,7 +64,8 @@ iest-tfi_urban-style/
 │   │   ├── carrito.js                ← carrito en localStorage      (sin Supabase)
 │   │   ├── validaciones.js           ← reglas de los formularios    (sin Supabase)
 │   │   ├── whatsapp.js               ← arma el mensaje y el enlace  (sin Supabase)
-│   │   └── formato.js                ← formato de precios y fechas  (sin Supabase)
+│   │   ├── formato.js                ← formato de precios y fechas  (sin Supabase)
+│   │   └── filtros.js                ← filtros ⇄ dirección          (sin Supabase)
 │   ├── componentes/                  ← funciones que arman piezas de la página
 │   │   ├── encabezado.js             ← menú del celular y contador del carrito
 │   │   ├── tarjetaProducto.js
@@ -93,7 +95,8 @@ iest-tfi_urban-style/
 │   ├── carrito.test.js
 │   ├── validaciones.test.js
 │   ├── whatsapp.test.js
-│   └── formato.test.js
+│   ├── formato.test.js
+│   └── filtros.test.js
 ├── img/
 │   ├── marca/                        ← logo.svg, logo-oscuro.svg, isotipo.svg
 │   ├── productos/                    ← fotos de las prendas

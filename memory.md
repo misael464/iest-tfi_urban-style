@@ -46,3 +46,5 @@ El detalle de cada uno está en `docs/PROMPTS.md`.
    AGENTS.md; el autor las rechazó.
 7. En /spec buscaba el nombre de la carpeta en una tabla de 02 que no lo
    tiene; se agregó la tabla de equivalencias.
+8. Escribió pruebas del navegador en tono afirmativo y se leyeron como ya
+   comprobadas; ahora las marca como "Prueba pendiente (la hacés vos)".
