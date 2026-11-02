@@ -33,6 +33,7 @@
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
 - Probar en el navegador los botones y los mensajes cuando se usen en la Etapa 4 (revisar también cómo se ve el ✓).
+- En la spec 003: `crear_pedido` dice “Solo quedan 1 unidades” con stock 1; corregir el singular en 05 y en `db/funciones.sql`.
 
 ## Errores de la IA ya vistos
 
@@ -49,3 +50,7 @@ El detalle de cada uno está en `docs/PROMPTS.md`.
    tiene; se agregó la tabla de equivalencias.
 8. Escribió pruebas del navegador en tono afirmativo y se leyeron como ya
    comprobadas; ahora las marca como "Prueba pendiente (la hacés vos)".
+9. Guardó carrito.js incompleto y con un import a un archivo inexistente;
+   lo detectó y lo corrigió ella misma.
+10. Ocultó bloques con `hidden` sin ver que un `display` en el CSS lo anula;
+    falló el carrito vacío. Se agregó `[hidden] { display: none !important; }`.

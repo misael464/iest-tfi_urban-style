@@ -69,7 +69,7 @@ página.
 - **CA24 (RF10)** · Cuando el cliente cambia la cantidad de un ítem, el sistema debe guardar la cantidad nueva, con los mismos límites de CA15 a CA17.
 - **CA25 (RF10)** · Cuando el cliente toca “Quitar” en un ítem, el sistema debe sacarlo del carrito y de la pantalla.
 - **CA26 (RF10)** · Si una variante del carrito ya no está a la venta, entonces el sistema debe mostrar junto al ítem el aviso “Uno de los productos ya no está disponible.”.
-- **CA27 (RF10)** · Si la cantidad de un ítem supera el stock actual, entonces el sistema debe mostrar junto al ítem el aviso “Solo quedan N unidades de este talle.”.
+- **CA27 (RF10)** · Si la cantidad de un ítem supera el stock actual, entonces el sistema debe mostrar junto al ítem el aviso “Solo quedan N unidades de este talle.” (con 1, “Solo queda 1 unidad de este talle.”; con 0, “Este talle se agotó. Probá con otro color o talle.”, el mismo texto que devuelve `crear_pedido`).
 - **CA40 (RF10)** · El sistema debe mostrar debajo del resumen el botón secundario “Seguir comprando”, que abre `/catalogo.html`.
 - **CA28 (RF10)** · Mientras el carrito esté vacío, el sistema debe mostrar el texto “Tu carrito está vacío. Mirá el catálogo y armá tu look.” y el botón “Ver catálogo”.
 - **CA29 (RF10)** · Mientras el ancho de la pantalla sea de 1024 px o más, el sistema debe mostrar el resumen al costado de la lista de ítems; en pantallas más chicas, debajo.

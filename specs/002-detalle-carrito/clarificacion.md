@@ -13,6 +13,8 @@ El autor trajo las respuestas juntas, sin preguntas de a una (02/11/2026).
 | 5 | ¿Dónde y cómo se guarda el carrito, y qué pasa si lo guardado está roto? | En `localStorage`, con la clave `urban-style-carrito`; si lo guardado está roto, se empieza con el carrito vacío | CA20 reescrito; CA39 nuevo |
 | 6 | ¿El carrito tiene un botón para volver a comprar? (lo agregó el autor) | Sí: botón secundario “Seguir comprando”, debajo del resumen, que abre `/catalogo.html` | CA40 nuevo |
 | 7 | ¿Con 1 unidad el stock dice “Quedan 1 unidades”? (al aprobar la spec) | No: con 1 unidad dice “Queda 1 unidad” | CA12 reescrito |
+| 8 | ¿Con stock 1, el aviso del carrito dice “Solo quedan 1 unidades de este talle.”? (durante la tarea 11) | No: dice “Solo queda 1 unidad de este talle.” | CA27 reescrito |
+| 9 | ¿Con stock 0, el aviso dice “Solo quedan 0 unidades…”? (durante la tarea 11) | No: dice “Este talle se agotó. Probá con otro color o talle.”, como `crear_pedido` | CA27 reescrito |
 
 ## Quedan como estaban en la spec
 
