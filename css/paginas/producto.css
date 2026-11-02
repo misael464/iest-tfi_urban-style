@@ -1,0 +1,125 @@
+/* css/paginas/producto.css */
+
+.producto {
+  padding-block: var(--espacio-5);
+}
+
+.producto-volver {
+  margin-bottom: var(--espacio-3);
+}
+
+/* Celular y tableta: una columna, primero las fotos (CA04) */
+.producto-cuerpo {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+/* Computadora: fotos a la izquierda y datos a la derecha (CA03) */
+@media (min-width: 1024px) {
+  .producto-cuerpo {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.producto-nombre {
+  margin: 0 0 var(--espacio-2);
+}
+
+.producto-precio {
+  margin: 0 0 var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 24px;
+}
+
+/* En el detalle, la etiqueta va en el texto y no sobre la foto */
+.producto-datos .etiqueta-disponibilidad {
+  position: static;
+  display: inline-block;
+}
+
+.producto-seccion {
+  margin-top: var(--espacio-4);
+}
+
+.producto-descripcion {
+  margin: 0;
+}
+
+.producto-stock {
+  min-height: 24px;
+  margin: var(--espacio-3) 0;
+}
+
+.producto-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--espacio-3);
+  margin-bottom: var(--espacio-3);
+}
+
+.producto-no-encontrado-texto {
+  max-width: 40ch;
+  margin: 0 0 var(--espacio-4);
+}
+
+/* Galería: foto principal 4:5 y miniaturas debajo */
+.galeria-producto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.galeria-producto-marco {
+  aspect-ratio: 4 / 5;
+}
+
+.galeria-producto-principal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galeria-producto-sin-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: var(--borde);
+}
+
+.galeria-producto-miniaturas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.galeria-producto-miniatura {
+  display: block;
+  width: 64px;
+  height: 80px;
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+}
+
+.galeria-producto-miniatura[aria-pressed="true"],
+.galeria-producto-miniatura:hover {
+  border-color: var(--color-principal);
+}
+
+.galeria-producto-miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

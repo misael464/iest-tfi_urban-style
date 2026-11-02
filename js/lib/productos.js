@@ -66,6 +66,81 @@ export async function obtenerDestacados() {
   return data.map(normalizarDestacado);
 }
 
+function ordenarImagenes(imagenes) {
+  return [...imagenes]
+    .sort((a, b) => a.orden - b.orden)
+    .map((imagen) => ({ ruta: imagen.ruta, textoAlternativo: imagen.texto_alternativo }));
+}
+
+function normalizarDetalle(producto) {
+  const variantes = producto.variantes.map((variante) => ({
+    id: variante.id,
+    stock: variante.stock,
+    talle: variante.talles.nombre,
+    ordenTalle: variante.talles.orden,
+    color: variante.colores.nombre,
+    hex: variante.colores.hex,
+  }));
+
+  return {
+    id: producto.id,
+    nombre: producto.nombre,
+    slug: producto.slug,
+    precio: Number(producto.precio),
+    descripcion: producto.descripcion,
+    imagenes: ordenarImagenes(producto.producto_imagenes),
+    variantes,
+    stockTotal: variantes.reduce((suma, variante) => suma + variante.stock, 0),
+  };
+}
+
+// Devuelve null si el producto no existe, está dado de baja o su categoría
+// está desactivada: la RLS no lo devuelve (CA07).
+export async function obtenerProductoPorSlug(slug) {
+  const { data, error } = await supabase
+    .from("productos")
+    .select(
+      "id, nombre, slug, precio, descripcion, producto_imagenes(ruta, texto_alternativo, orden), variantes(id, stock, talles(nombre, orden), colores(nombre, hex))"
+    )
+    .eq("slug", slug)
+    .maybeSingle();
+  comprobarError(error);
+  return data ? normalizarDetalle(data) : null;
+}
+
+// Lee nombre, precio y stock actuales de las variantes del carrito (CA23).
+// Una variante que no vuelve, o vuelve sin producto, no está a la venta (CA26).
+export async function obtenerVariantesDelCarrito(ids) {
+  if (ids.length === 0) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("variantes")
+    .select(
+      "id, stock, productos(nombre, slug, precio, producto_imagenes(ruta, texto_alternativo, orden)), talles(nombre), colores(nombre)"
+    )
+    .in("id", ids);
+  comprobarError(error);
+
+  return data
+    .filter((variante) => variante.productos)
+    .map((variante) => {
+      const [primeraImagen] = ordenarImagenes(variante.productos.producto_imagenes);
+      return {
+        varianteId: variante.id,
+        stock: variante.stock,
+        nombre: variante.productos.nombre,
+        slug: variante.productos.slug,
+        precio: Number(variante.productos.precio),
+        imagen: primeraImagen ? primeraImagen.ruta : null,
+        textoAlternativo: primeraImagen ? primeraImagen.textoAlternativo : "",
+        talle: variante.talles.nombre,
+        color: variante.colores.nombre,
+      };
+    });
+}
+
 export async function obtenerCategorias() {
   const { data, error } = await supabase
     .from("categorias")
