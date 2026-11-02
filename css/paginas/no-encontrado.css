@@ -1,0 +1,10 @@
+/* css/paginas/no-encontrado.css */
+
+.no-encontrado {
+  padding-block: var(--espacio-6);
+}
+
+.no-encontrado-texto {
+  max-width: 40ch;
+  margin: 0 0 var(--espacio-4);
+}
