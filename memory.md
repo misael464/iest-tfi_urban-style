@@ -6,9 +6,10 @@
 
 - La especificación de `docs/` está actualizada al nuevo stack (28/10/2026).
 - `docs/CONSTITUCION.md` está creada, con los principios P1 a P8.
-- Las etapas 1, 2 y 3 están terminadas (02/11/2026).
+- Las etapas 1 a 6 de `docs/08-TAREAS.md` están terminadas (02/11/2026).
 - La funcionalidad 001 (catálogo, búsqueda y filtros) está terminada: 28 de 28 CA verificados en `specs/001-catalogo/verificacion.md` (02/11/2026).
-- Próximo paso: `/spec 002-detalle-carrito`.
+- La funcionalidad 002 (detalle del producto y carrito) está terminada: 40 de 40 CA verificados en `specs/002-detalle-carrito/verificacion.md` (02/11/2026).
+- Próximo paso: `/spec 003-pedido-whatsapp` (incluye corregir el singular de `crear_pedido`).
 
 ## Decisiones tomadas
 

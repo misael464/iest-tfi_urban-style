@@ -104,24 +104,24 @@ demostración con foto, nombre, precio y disponibilidad.
 - [x] Agregar los filtros por categoría, talle, color y disponibilidad (RF04).
 - [x] Guardar la búsqueda y los filtros en la dirección de la página (RF04).
 - [x] Mostrar el estado vacío con el botón “Limpiar filtros” (RF05).
-- [ ] Armar `producto.html?slug=...` con galería y datos, y el mensaje “No encontrado” si el producto no existe o está dado de baja (RF06).
-- [ ] Crear `crearSelectorVariante` con el stock por combinación (RF07).
-- [ ] Crear `esCantidadValida` en `js/lib/validaciones.js`, con sus tests (RF08).
-- [ ] Crear `crearSelectorCantidad` con sus límites (RF08).
+- [x] Armar `producto.html?slug=...` con galería y datos, y el mensaje “No encontrado” si el producto no existe o está dado de baja (RF06).
+- [x] Crear `crearSelectorVariante` con el stock por combinación (RF07).
+- [x] Crear `esCantidadValida` en `js/lib/validaciones.js`, con sus tests (RF08).
+- [x] Crear `crearSelectorCantidad` con sus límites (RF08).
 
 **Criterio de terminado:** se puede llegar a un producto filtrando y buscando,
 y el detalle muestra el stock correcto de cada talle y color.
 
 ## Etapa 6 · Carrito
 
-- [ ] Crear en `js/lib/carrito.js` las funciones para agregar, cambiar la cantidad, quitar y calcular subtotales y total, con sus tests (RF09, RF10, RF11).
-- [ ] Crear `leerCarrito` y `guardarCarrito`, que usan `localStorage` (RF09).
-- [ ] Conectar el botón “Agregar al carrito” y el contador del encabezado (RF09).
-- [ ] Agregar en `js/lib/productos.js` la lectura de precio y stock actuales de las variantes del carrito.
-- [ ] Armar `carrito.html` con `crearItemCarrito` y `crearResumenCarrito` (RF10).
-- [ ] Permitir cambiar cantidades y quitar ítems (RF10).
-- [ ] Mostrar subtotales y total (RF11).
-- [ ] Mostrar el estado de carrito vacío (RF10).
+- [x] Crear en `js/lib/carrito.js` las funciones para agregar, cambiar la cantidad, quitar y calcular subtotales y total, con sus tests (RF09, RF10, RF11).
+- [x] Crear `leerCarrito` y `guardarCarrito`, que usan `localStorage` (RF09).
+- [x] Conectar el botón “Agregar al carrito” y el contador del encabezado (RF09).
+- [x] Agregar en `js/lib/productos.js` la lectura de precio y stock actuales de las variantes del carrito.
+- [x] Armar `carrito.html` con `crearItemCarrito` y `crearResumenCarrito` (RF10).
+- [x] Permitir cambiar cantidades y quitar ítems (RF10).
+- [x] Mostrar subtotales y total (RF11).
+- [x] Mostrar el estado de carrito vacío (RF10).
 
 **Criterio de terminado:** el carrito conserva los productos al recargar y los
 importes se actualizan solos al cambiar una cantidad.
@@ -224,5 +224,6 @@ y las especificaciones describen lo que efectivamente se construyó.
 | 2 · Identidad visual | Terminada (31/10/2026) |
 | 3 · Configuración de la base de datos | Terminada (02/11/2026) |
 | 4 · Catálogo | Terminada (02/11/2026) |
-| 5 · Filtros y detalle de productos | En curso: búsqueda, filtros y estado vacío listos; falta el detalle (`specs/002-detalle-carrito/`) |
+| 5 · Filtros y detalle de productos | Terminada (02/11/2026) |
+| 6 · Carrito | Terminada (02/11/2026) |
 | Resto de las etapas | Sin empezar |
