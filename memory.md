@@ -25,16 +25,17 @@
 | 30/10/2026 | Se crean las skills verificar-criterios y revisar-marca (skill propia) |
 | 30/10/2026 | Se usa Vitest 3 porque el entorno tiene Node 20.13 |
 | 31/10/2026 | La docente extendió el plazo del TFI al martes 3 de noviembre de 2026 |
+| 02/11/2026 | El autor define el número de WhatsApp de la tienda en `js/config/sitio.js`: ya no está pendiente |
+| 02/11/2026 | WhatsApp no se abre solo después del pedido: se muestra el botón “Abrir WhatsApp”, porque los navegadores bloquean las ventanas emergentes |
 
 ## Pendientes
 
-- Datos del negocio en `js/config/sitio.js`: WhatsApp, horarios, redes y correo.
+- Datos del negocio en `js/config/sitio.js`: horarios, redes y correo.
 - Dominio definitivo: reemplazar `DOMINIO-PENDIENTE` (HTML, `sitemap.xml` y `robots.txt`).
 - Confirmar la última versión estable de `supabase-js` (hoy figura `@2.45.4`).
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
 - Probar en el navegador los botones y los mensajes cuando se usen en la Etapa 4 (revisar también cómo se ve el ✓).
-- En la spec 003: `crear_pedido` dice “Solo quedan 1 unidades” con stock 1; corregir el singular en 05 y en `db/funciones.sql`.
 
 ## Errores de la IA ya vistos
 

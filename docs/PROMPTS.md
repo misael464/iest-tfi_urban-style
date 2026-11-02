@@ -95,6 +95,7 @@ La IA también detectó problemas que el autor no había visto.
 | 6 | 28/10/2026 | 04 describía `PROMPTS.md` solo como registro de prompts, y 06 tenía un error de tipeo | Se corrigieron los dos |
 | 7 | 27/10/2026 | En 08-TAREAS.md, Seguridad dependía de etapas de la segunda etapa, faltaba desactivar el registro público y las pruebas pedían RF01 a RF22 | Se corrigieron las dependencias, la tarea y el rango (RF01 a RF13) |
 | 8 | 30/10/2026 | La skill `revisar-marca` habría marcado como error el texto Gris medio de los botones deshabilitados, que 06 pide | Se agregó la excepción de los elementos deshabilitados |
+| 9 | 02/11/2026 | En `/clarificar 003`, el formato del mensaje de WhatsApp que propuso el autor no tenía el precio unitario que exige RF13; la IA avisó en lugar de elegir en silencio | El autor eligió sumar el precio unitario a cada línea; CA12 quedó cumpliendo RF13 sin cambiar el requerimiento |
 
 ## Buenas prácticas que quedaron
 

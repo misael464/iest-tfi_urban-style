@@ -121,7 +121,7 @@ negocio los defina:
 
 | Dato | Estado | Dónde se configura |
 | --- | --- | --- |
-| Número de WhatsApp | Pendiente | `js/config/sitio.js` |
+| Número de WhatsApp | Definido por el autor (02/11/2026) | `js/config/sitio.js` |
 | Horarios de atención | Pendiente | `js/config/sitio.js` |
 | Enlaces a redes sociales | Pendiente | `js/config/sitio.js` |
 | Correo de contacto | Pendiente | `js/config/sitio.js` |

@@ -544,7 +544,10 @@ BEGIN
     ELSIF v_item.cantidad > v_item.stock THEN
       v_errores := v_errores || jsonb_build_object('varianteId', v_item.variante_id,
         'stock', v_item.stock,
-        'mensaje', format('Solo quedan %s unidades de este talle.', v_item.stock));
+        'mensaje', CASE
+          WHEN v_item.stock = 1 THEN 'Solo queda 1 unidad de este talle.'
+          ELSE format('Solo quedan %s unidades de este talle.', v_item.stock)
+        END);
     END IF;
   END LOOP;
 
