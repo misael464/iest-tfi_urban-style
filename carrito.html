@@ -73,9 +73,39 @@
         <section class="carrito-resumen" aria-labelledby="titulo-resumen">
           <h2 class="carrito-resumen-titulo" id="titulo-resumen">Resumen del pedido</h2>
           <div id="resumen-carrito"></div>
+
+          <form class="carrito-pedido" id="formulario-pedido" novalidate>
+            <label class="formulario-etiqueta" for="campo-nombre">Tu nombre (obligatorio)</label>
+            <input
+              class="formulario-campo"
+              id="campo-nombre"
+              name="nombre"
+              type="text"
+              autocomplete="name"
+              maxlength="60"
+              aria-describedby="error-nombre"
+            />
+            <div class="carrito-error-campo" id="error-nombre"></div>
+            <button class="boton boton-principal carrito-enviar" id="boton-enviar" type="submit">
+              Enviar pedido por WhatsApp
+            </button>
+          </form>
+
+          <div class="mensaje mensaje-informacion carrito-aclaracion">
+            <span class="mensaje-icono" aria-hidden="true">i</span>
+            <p class="mensaje-texto">El pago y la entrega se coordinan por WhatsApp.</p>
+          </div>
+
           <a class="boton boton-secundario carrito-seguir" href="/catalogo.html">Seguir comprando</a>
         </section>
       </div>
+
+      <section class="carrito-confirmacion" id="pedido-confirmado" hidden>
+        <div id="mensaje-confirmacion"></div>
+        <a class="boton boton-principal" id="enlace-whatsapp" href="/carrito.html" target="_blank" rel="noopener">
+          Abrir WhatsApp
+        </a>
+      </section>
 
       <div class="estado-vacio" id="carrito-vacio" hidden>
         <p class="estado-vacio-titulo">Tu carrito está vacío. Mirá el catálogo y armá tu look.</p>

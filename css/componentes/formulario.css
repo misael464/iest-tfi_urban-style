@@ -20,3 +20,8 @@
   font-weight: var(--peso-textos);
   font-size: 16px;
 }
+
+/* Campo con error: borde de 4 px; el mensaje va debajo, con ícono y "Error:" */
+.formulario-campo[aria-invalid="true"] {
+  border-width: 4px;
+}

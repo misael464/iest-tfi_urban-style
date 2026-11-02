@@ -68,9 +68,12 @@ function crearTexto(clase, texto) {
 export function crearItemCarrito(item, { alCambiarCantidad, alQuitar }) {
   const elemento = document.createElement("li");
   elemento.className = "item-carrito";
+  // Con estos atributos, la página pone acá el aviso que devuelve crear_pedido.
+  elemento.dataset.varianteId = String(item.varianteId);
 
   const avisos = document.createElement("div");
   avisos.className = "item-carrito-avisos";
+  avisos.dataset.avisos = "";
   const quitar = crearBotonQuitar(() => alQuitar(item.varianteId));
 
   // La variante ya no está a la venta: no hay datos que mostrar (CA26).

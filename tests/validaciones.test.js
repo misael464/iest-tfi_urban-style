@@ -1,7 +1,11 @@
 // tests/validaciones.test.js
 import { describe, it, expect } from "vitest";
 
-import { esCantidadValida, obtenerCantidadMaxima } from "../js/lib/validaciones.js";
+import {
+  esCantidadValida,
+  esNombreValido,
+  obtenerCantidadMaxima,
+} from "../js/lib/validaciones.js";
 
 describe("esCantidadValida", () => {
   it("acepta cantidades enteras de 1 a 10", () => {
@@ -24,6 +28,29 @@ describe("esCantidadValida", () => {
   it("respeta un máximo menor, como el stock", () => {
     expect(esCantidadValida(3, 3)).toBe(true);
     expect(esCantidadValida(4, 3)).toBe(false);
+  });
+});
+
+describe("esNombreValido", () => {
+  it("acepta nombres de 2 a 60 caracteres", () => {
+    expect(esNombreValido("Al")).toBe(true);
+    expect(esNombreValido("A".repeat(60))).toBe(true);
+  });
+
+  it("rechaza nombres de menos de 2 o más de 60 caracteres", () => {
+    expect(esNombreValido("")).toBe(false);
+    expect(esNombreValido("A")).toBe(false);
+    expect(esNombreValido("A".repeat(61))).toBe(false);
+  });
+
+  it("no cuenta los espacios de los costados", () => {
+    expect(esNombreValido("  A  ")).toBe(false);
+    expect(esNombreValido("  Ana  ")).toBe(true);
+  });
+
+  it("rechaza lo que no es texto", () => {
+    expect(esNombreValido(null)).toBe(false);
+    expect(esNombreValido(42)).toBe(false);
   });
 });
 

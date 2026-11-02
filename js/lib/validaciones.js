@@ -13,6 +13,19 @@ export function esCantidadValida(cantidad, maximo = CANTIDAD_MAXIMA) {
   );
 }
 
+export const NOMBRE_LARGO_MINIMO = 2;
+export const NOMBRE_LARGO_MAXIMO = 60;
+
+// El nombre del pedido: de 2 a 60 caracteres, sin contar los espacios de los
+// costados (10-SEGURIDAD.md). crear_pedido aplica la misma regla.
+export function esNombreValido(nombre) {
+  if (typeof nombre !== "string") {
+    return false;
+  }
+  const largo = nombre.trim().length;
+  return largo >= NOMBRE_LARGO_MINIMO && largo <= NOMBRE_LARGO_MAXIMO;
+}
+
 // El máximo que se puede pedir de una variante: su stock, con un tope de 10 (RF08).
 export function obtenerCantidadMaxima(stock) {
   return Math.max(0, Math.min(stock, CANTIDAD_MAXIMA));
