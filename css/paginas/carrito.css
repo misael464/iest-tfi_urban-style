@@ -1,0 +1,51 @@
+/* css/paginas/carrito.css */
+
+.carrito {
+  padding-block: var(--espacio-5);
+}
+
+.carrito-titulo {
+  margin: 0 0 var(--espacio-4);
+}
+
+/* Celular y tableta: el resumen va debajo de los ítems */
+.carrito-cuerpo {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+/* Computadora: el resumen va al costado (CA29) */
+@media (min-width: 1024px) {
+  .carrito-cuerpo {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.carrito-resumen {
+  padding: var(--espacio-4);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+}
+
+.carrito-resumen-titulo {
+  margin: 0 0 var(--espacio-3);
+}
+
+.resumen-carrito-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  margin: 0 0 var(--espacio-2);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+}
+
+.resumen-carrito-total {
+  font-size: 24px;
+}
+
+.carrito-seguir {
+  width: 100%;
+  margin-top: var(--espacio-3);
+}

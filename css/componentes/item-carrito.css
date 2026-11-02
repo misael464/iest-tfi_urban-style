@@ -1,0 +1,68 @@
+/* css/componentes/item-carrito.css */
+
+.carrito-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+/* Foto a la izquierda y datos a la derecha; una línea Gris medio los separa */
+.item-carrito {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--espacio-3);
+  padding-bottom: var(--espacio-4);
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+.item-carrito-no-disponible {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.item-carrito-foto {
+  display: block;
+  width: 96px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.item-carrito-sin-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  aspect-ratio: 4 / 5;
+  border: var(--borde);
+  font-size: 14px;
+  text-align: center;
+}
+
+.item-carrito-datos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+}
+
+.item-carrito-nombre {
+  margin: 0;
+  font-size: 16px;
+}
+
+.item-carrito-detalle {
+  margin: 0;
+}
+
+.item-carrito-subtotal {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+}
+
+.item-carrito-avisos:empty {
+  display: none;
+}
