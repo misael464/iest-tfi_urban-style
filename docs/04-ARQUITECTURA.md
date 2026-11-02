@@ -70,6 +70,7 @@ iest-tfi_urban-style/
 │   ├── componentes/                  ← funciones que arman piezas de la página
 │   │   ├── encabezado.js             ← menú del celular y contador del carrito
 │   │   ├── tarjetaProducto.js
+│   │   ├── galeriaProducto.js        ← foto principal y miniaturas del detalle
 │   │   ├── grillaProductos.js
 │   │   ├── filtrosCatalogo.js
 │   │   ├── selectorVariante.js

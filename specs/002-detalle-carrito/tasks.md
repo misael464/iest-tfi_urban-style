@@ -8,10 +8,10 @@
 - [x] 4. `textoStock` en `js/lib/formato.js`, con tests (CA12).
 - [x] 5. Contador del encabezado con el total de unidades, en todas las páginas (CA21, CA37).
 - [x] 6. Pie de todas las páginas: enlace “Carrito” y “© 2026 Urban Style · Tienda de demostración”.
-- [ ] 7. `obtenerProductoPorSlug` y `obtenerVariantesDelCarrito` en `js/lib/productos.js` (CA07, CA23, CA26).
-- [ ] 8. `producto.html` con datos, galería, “No encontrado” y error (CA01 a CA08, CA34).
-- [ ] 9. Selector de talle y color (CA09 a CA13, CA35, CA36).
-- [ ] 10. Selector de cantidad y “Agregar al carrito” con su confirmación y su error (CA14 a CA19, CA38).
+- [x] 7. `obtenerProductoPorSlug` y `obtenerVariantesDelCarrito` en `js/lib/productos.js` (CA07, CA23, CA26).
+- [x] 8. `producto.html` con datos, galería, “No encontrado” y error (CA01 a CA08, CA34).
+- [x] 9. Selector de talle y color (CA09 a CA13, CA35, CA36).
+- [x] 10. Selector de cantidad y “Agregar al carrito” con su confirmación y su error (CA14 a CA19, CA38).
 - [ ] 11. `carrito.html` con ítems, avisos, “Quitar”, resumen, “Seguir comprando”, vacío y error (CA22 a CA33, CA40).
 - [ ] 12. `npm test` pasa.
 - [ ] 13. Correr `revisar-marca` sobre los archivos nuevos y aplicar lo que corresponda.
