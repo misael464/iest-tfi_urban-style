@@ -7,7 +7,8 @@
 - La especificación de `docs/` está actualizada al nuevo stack (28/10/2026).
 - `docs/CONSTITUCION.md` está creada, con los principios P1 a P8.
 - Las etapas 1, 2 y 3 están terminadas (02/11/2026).
-- Próximo paso: `/spec 001-catalogo` y la Etapa 4 de `docs/08-TAREAS.md`.
+- La funcionalidad 001 (catálogo, búsqueda y filtros) está terminada: 28 de 28 CA verificados en `specs/001-catalogo/verificacion.md` (02/11/2026).
+- Próximo paso: `/spec 002-detalle-carrito`.
 
 ## Decisiones tomadas
 

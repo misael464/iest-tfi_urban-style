@@ -88,22 +88,22 @@ intento de escribir con la clave anon es rechazado.
 
 ## Etapa 4 · Catálogo
 
-- [ ] Crear `js/lib/productos.js`, que llama a `buscar_productos`.
-- [ ] Crear `formatearPrecio` en `js/lib/formato.js`, con sus tests (RF11).
-- [ ] Crear `crearTarjetaProducto`, `crearGrillaProductos` y `crearEtiquetaDisponibilidad` (RF02).
-- [ ] Armar `catalogo.html` con la grilla de 2, 3 y 4 columnas (RF02, RNF01).
-- [ ] Armar `index.html` con banner, destacados y categorías (RF01).
-- [ ] Crear `404.html`.
+- [x] Crear `js/lib/productos.js`, que llama a `buscar_productos`.
+- [x] Crear `formatearPrecio` en `js/lib/formato.js`, con sus tests (RF11).
+- [x] Crear `crearTarjetaProducto`, `crearGrillaProductos` y `crearEtiquetaDisponibilidad` (RF02).
+- [x] Armar `catalogo.html` con la grilla de 2, 3 y 4 columnas (RF02, RNF01).
+- [x] Armar `index.html` con banner, destacados y categorías (RF01).
+- [x] Crear `404.html`.
 
 **Criterio de terminado:** el inicio y el catálogo muestran los productos de
 demostración con foto, nombre, precio y disponibilidad.
 
 ## Etapa 5 · Filtros y detalle de productos
 
-- [ ] Agregar la búsqueda por nombre, sin distinguir mayúsculas ni tildes (RF03).
-- [ ] Agregar los filtros por categoría, talle, color y disponibilidad (RF04).
-- [ ] Guardar la búsqueda y los filtros en la dirección de la página (RF04).
-- [ ] Mostrar el estado vacío con el botón “Limpiar filtros” (RF05).
+- [x] Agregar la búsqueda por nombre, sin distinguir mayúsculas ni tildes (RF03).
+- [x] Agregar los filtros por categoría, talle, color y disponibilidad (RF04).
+- [x] Guardar la búsqueda y los filtros en la dirección de la página (RF04).
+- [x] Mostrar el estado vacío con el botón “Limpiar filtros” (RF05).
 - [ ] Armar `producto.html?slug=...` con galería y datos, y el mensaje “No encontrado” si el producto no existe o está dado de baja (RF06).
 - [ ] Crear `crearSelectorVariante` con el stock por combinación (RF07).
 - [ ] Crear `esCantidadValida` en `js/lib/validaciones.js`, con sus tests (RF08).
@@ -206,6 +206,7 @@ aceptación se cumplen y no quedan errores conocidos sin anotar.
 - [ ] Importar el repositorio en Vercel, sin framework ni comando de compilación.
 - [ ] Cargar la dirección del sitio publicado en la configuración de Supabase Auth.
 - [ ] Verificar el sitio publicado con HTTPS.
+- [ ] Abrir `/no-existe.html` en el sitio publicado y comprobar que muestra `404.html`.
 - [ ] Revisar el `<title>`, la `meta description` y el `<h1>` de cada HTML, `sitemap.xml`, `robots.txt` y la imagen para redes de [09-SEO.md](09-SEO.md).
 - [ ] Reemplazar los datos de demostración por los productos reales.
 - [ ] Hacer una copia de seguridad de la base de datos.
@@ -222,4 +223,6 @@ y las especificaciones describen lo que efectivamente se construyó.
 | 1 · Preparación del proyecto | Terminada (30/10/2026) |
 | 2 · Identidad visual | Terminada (31/10/2026) |
 | 3 · Configuración de la base de datos | Terminada (02/11/2026) |
+| 4 · Catálogo | Terminada (02/11/2026) |
+| 5 · Filtros y detalle de productos | En curso: búsqueda, filtros y estado vacío listos; falta el detalle (`specs/002-detalle-carrito/`) |
 | Resto de las etapas | Sin empezar |

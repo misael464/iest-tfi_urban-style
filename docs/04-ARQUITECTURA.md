@@ -49,6 +49,7 @@ iest-tfi_urban-style/
 │       ├── producto.css
 │       ├── carrito.css
 │       ├── contacto.css
+│       ├── no-encontrado.css
 │       └── admin.css
 ├── js/
 │   ├── config/
@@ -85,6 +86,7 @@ iest-tfi_urban-style/
 │       ├── producto.js
 │       ├── carrito.js
 │       ├── contacto.js
+│       ├── noEncontrado.js
 │       └── admin/
 ├── db/                               ← SQL que se ejecuta en Supabase
 │   ├── esquema.sql                   ← creación de tablas

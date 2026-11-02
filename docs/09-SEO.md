@@ -21,6 +21,7 @@ tiene los suyos, **escritos directamente en su archivo HTML**: no se repiten.
 | Catálogo filtrado por categoría | `/catalogo.html?categoria=...` | *Categoría* \| Urban Style | *Categoría* de Urban Style con talles, colores y stock a la vista. Elegí talle y color y pedí por WhatsApp. |
 | Detalle de producto | `/producto.html?slug=...` | *Nombre del producto* \| Urban Style | Los primeros 155 caracteres de la descripción del producto. |
 | Contacto (segunda etapa) | `/contacto.html` | Contacto \| Urban Style | Escribinos por el formulario o por WhatsApp. Consultá talles, colores, disponibilidad y horarios de atención. |
+| No encontrado | cualquier dirección inexistente (`404.html`) | Página no encontrada \| Urban Style | La página que buscás no existe. Mirá el catálogo de Urban Style y encontrá tu próximo look. No se indexa. |
 | Carrito | `/carrito.html` | Tu carrito \| Urban Style | No se indexa. |
 | Panel (segunda etapa) | `/admin/...` | Administración \| Urban Style | No se indexa. |
 

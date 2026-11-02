@@ -14,4 +14,4 @@
 - [x] 10. Estado vacío con “Limpiar filtros” (CA27).
 - [x] 11. `npm test` pasa.
 - [x] 12. Correr `revisar-marca` sobre los archivos nuevos y aplicar lo que corresponda.
-- [ ] 13. Correr `/verificar 001-catalogo`.
+- [x] 13. Correr `/verificar 001-catalogo`.
