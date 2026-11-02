@@ -1,13 +1,24 @@
 // js/componentes/encabezado.js
 // Agrega comportamiento al encabezado escrito en el HTML: el menú del
-// celular y la marca de la página actual. El contador del carrito se
-// conecta en la Etapa 6.
+// celular, la marca de la página actual y el contador del carrito.
+import { contarUnidades, leerCarrito } from "../lib/carrito.js";
 
 const SUFIJO_INICIO = "index.html";
 
 export function iniciarEncabezado() {
   iniciarMenu();
   marcarPaginaActual();
+  actualizarContadorCarrito();
+  // Si el carrito cambia en otra pestaña, el contador se pone al día.
+  window.addEventListener("storage", actualizarContadorCarrito);
+}
+
+// El contador muestra el total de unidades guardadas (CA21, CA37).
+export function actualizarContadorCarrito() {
+  const contador = document.getElementById("contador-carrito");
+  if (contador) {
+    contador.textContent = String(contarUnidades(leerCarrito()));
+  }
 }
 
 function iniciarMenu() {

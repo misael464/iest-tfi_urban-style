@@ -49,6 +49,11 @@
   color: var(--color-fondo);
 }
 
+.pie-de-pagina-legal {
+  margin: 0;
+  font-size: 14px;
+}
+
 @media (min-width: 768px) {
   .pie-de-pagina-interior {
     flex-direction: row;

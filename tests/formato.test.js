@@ -5,6 +5,7 @@ import {
   formatearPrecio,
   obtenerDisponibilidad,
   textoCantidadProductos,
+  textoStock,
 } from "../js/lib/formato.js";
 
 describe("formatearPrecio", () => {
@@ -46,6 +47,20 @@ describe("obtenerDisponibilidad", () => {
   it("con 4 o más unidades dice Disponible", () => {
     expect(obtenerDisponibilidad(4)).toEqual({ estado: "disponible", texto: "Disponible" });
     expect(obtenerDisponibilidad(50).texto).toBe("Disponible");
+  });
+});
+
+describe("textoStock", () => {
+  it("con 1 unidad usa el singular", () => {
+    expect(textoStock(1)).toBe("Queda 1 unidad");
+  });
+
+  it("con más de 1 usa el plural", () => {
+    expect(textoStock(2)).toBe("Quedan 2 unidades");
+  });
+
+  it("sin stock lo dice", () => {
+    expect(textoStock(0)).toBe("Sin stock en esta combinación");
   });
 });
 

@@ -32,6 +32,14 @@ export function obtenerDisponibilidad(stockTotal) {
   return { estado: "disponible", texto: "Disponible" };
 }
 
+// Stock de la combinación elegida en el detalle (CA12).
+export function textoStock(stock) {
+  if (stock <= 0) {
+    return "Sin stock en esta combinación";
+  }
+  return stock === 1 ? "Queda 1 unidad" : `Quedan ${stock} unidades`;
+}
+
 // "1 producto" o "N productos".
 export function textoCantidadProductos(cantidad) {
   return cantidad === 1 ? "1 producto" : `${cantidad} productos`;
