@@ -71,16 +71,16 @@ con los colores y las fuentes del manual, en celular y en computadora.
 
 ## Etapa 3 · Configuración de la base de datos
 
-- [ ] Crear el proyecto en Supabase.
-- [ ] Completar `js/config/supabase.js` con la URL y la clave **anon**. La clave `service_role` no se copia a ningún archivo.
-- [ ] Ejecutar `db/esquema.sql` según [05-DATOS.md](05-DATOS.md).
-- [ ] Ejecutar `db/politicas.sql` y comprobar que las 10 tablas tienen RLS activado.
-- [ ] Ejecutar `db/funciones.sql`.
-- [ ] Ejecutar `db/datos-demo.sql` y comprobar los datos de demostración.
-- [ ] Crear `js/lib/supabase.js`, con `supabase-js` importado desde jsDelivr con versión fija.
-- [ ] Probar una lectura de categorías desde una página.
-- [ ] Probar que, con la clave anon, insertar o modificar una fila de cualquier tabla es rechazado.
-- [ ] Desactivar el registro público de usuarios en Supabase Auth, aunque el panel quede para la segunda etapa.
+- [x] Crear el proyecto en Supabase.
+- [x] Completar `js/config/supabase.js` con la URL y la clave **anon**. La clave `service_role` no se copia a ningún archivo.
+- [x] Ejecutar `db/esquema.sql` según [05-DATOS.md](05-DATOS.md).
+- [x] Ejecutar `db/politicas.sql` y comprobar que las 10 tablas tienen RLS activado.
+- [x] Ejecutar `db/funciones.sql`.
+- [x] Ejecutar `db/datos-demo.sql` y comprobar los datos de demostración.
+- [x] Crear `js/lib/supabase.js`, con `supabase-js` importado desde jsDelivr con versión fija.
+- [x] Probar una lectura de categorías desde una página.
+- [x] Probar que, con la clave anon, insertar o modificar una fila de cualquier tabla es rechazado.
+- [x] Desactivar el registro público de usuarios en Supabase Auth, aunque el panel quede para la segunda etapa.
 
 **Criterio de terminado:** las 10 tablas existen con RLS activado y datos de
 demostración, una página del sitio puede leer la lista de categorías y un
@@ -221,4 +221,5 @@ y las especificaciones describen lo que efectivamente se construyó.
 | Especificación (esta carpeta) | Terminada |
 | 1 · Preparación del proyecto | Terminada (30/10/2026) |
 | 2 · Identidad visual | Terminada (31/10/2026) |
+| 3 · Configuración de la base de datos | Terminada (02/11/2026) |
 | Resto de las etapas | Sin empezar |

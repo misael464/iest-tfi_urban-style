@@ -6,8 +6,8 @@
 
 - La especificación de `docs/` está actualizada al nuevo stack (28/10/2026).
 - `docs/CONSTITUCION.md` está creada, con los principios P1 a P8.
-- Las etapas 1 y 2 están terminadas (31/10/2026).
-- Próximo paso: `/spec 001-catalogo` y la Etapa 3 de `docs/08-TAREAS.md`.
+- Las etapas 1, 2 y 3 están terminadas (02/11/2026).
+- Próximo paso: `/spec 001-catalogo` y la Etapa 4 de `docs/08-TAREAS.md`.
 
 ## Decisiones tomadas
 
@@ -29,7 +29,6 @@
 - Datos del negocio en `js/config/sitio.js`: WhatsApp, horarios, redes y correo.
 - Dominio definitivo: reemplazar `DOMINIO-PENDIENTE` (HTML, `sitemap.xml` y `robots.txt`).
 - Confirmar la última versión estable de `supabase-js` (hoy figura `@2.45.4`).
-- Probar el SQL de `db/` en Supabase: todavía no se ejecutó.
 - Decidir si se agrega `.vercelignore` para no publicar `docs/`, `specs/` y `memory.md`.
 - Crear `docs/DECLARACION-IA.md` y `multimedia/FICHAS-IA.md`.
 - Probar en el navegador los botones y los mensajes cuando se usen en la Etapa 4 (revisar también cómo se ve el ✓).
