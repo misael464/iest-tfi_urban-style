@@ -42,7 +42,7 @@ página.
 - **CA36 (RF07)** · Donde el producto tiene un solo color, el sistema debe mostrar ese color ya elegido al abrir el detalle.
 - **CA10 (RF07)** · Cuando el cliente elige un color, el sistema debe mostrar tachados y deshabilitados los talles que no tienen stock en ese color.
 - **CA11 (RF07)** · Cuando el cliente elige un talle, el sistema debe mostrar tachados y deshabilitados los colores que no tienen stock en ese talle.
-- **CA12 (RF07)** · Cuando el cliente tiene elegidos un talle y un color, el sistema debe mostrar el stock de esa combinación con el texto “Quedan N unidades” o, si no hay, “Sin stock en esta combinación”.
+- **CA12 (RF07)** · Cuando el cliente tiene elegidos un talle y un color, el sistema debe mostrar el stock de esa combinación con el texto “Quedan N unidades” (con 1, “Queda 1 unidad”) o, si no hay, “Sin stock en esta combinación”.
 - **CA13 (RF07)** · Mientras no haya un talle y un color elegidos, o la combinación no tenga stock, el sistema debe mantener deshabilitado el botón “Agregar al carrito”.
 
 ### Cantidad
