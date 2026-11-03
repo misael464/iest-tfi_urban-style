@@ -67,12 +67,19 @@ a `.jpg`) y se les agregó la leyenda.
 
 | Escena | Herramienta | Imagen de partida | Prompt | Fecha |
 | --- | --- | --- | --- | --- |
+| 0 | Kling 3.0 (Higgsfield), 15 s, con sonido ambiente | Ninguna (solo texto) | Photorealistic cinematic night scene in a small town in northern Argentina. A young man in a black t-shirt and cargo pants hurries along a quiet street and arrives at a small clothing store: the metal shutter is down. He stops, frustrated, sighs. Then he takes his phone out, starts tapping and scrolling, and slowly smiles, relieved. The phone screen faces away from the camera. No logos, no readable text. | 03/11/2026 |
 | 1 | Kling 3.0 (Higgsfield), 15 s | `estilo-urbano.webp` | The young man walks slowly along the cobblestone street at sunset, the camera tracks him smoothly from the side, warm golden light, gentle cinematic movement, photorealistic. No text, no logos. | 03/11/2026 |
 | 2 | Kling 3.0 (Higgsfield), 15 s | `perchero.webp` | Slow smooth camera dolly forward toward the clothing rack in the minimalist store, natural window light, the clothes on the hangers sway very slightly, photorealistic. No people, no text, no logos. | 03/11/2026 |
 | 3 | Kling 3.0 (Higgsfield), 15 s | `remera-demo-oversize-negro.webp` | The black oversized t-shirt on the wooden hanger moves gently as if touched by a soft breeze, the camera slowly pushes in, soft studio light on an ivory background, photorealistic product shot. No text, no logos. | 03/11/2026 |
 | 4 | Kling 3.0 (Higgsfield), 15 s | `compra-celular.webp` | The hands hold the phone steady and a thumb gently scrolls on the screen, the clothing rack stays softly blurred in the background, natural light, photorealistic. The phone screen shows no readable text. No logos. | 03/11/2026 |
 
-Los cuatro clips se unieron con ffmpeg, con los textos del guion técnico
-(Anexo II del informe) y una placa final con la leyenda «Generado con IA».
-Antes se probaron Veo en vidogrid.ai (sin créditos) y la redacción
-automática de Clipchamp.
+Después de la escena 0 va una **grabación real del sitio publicado** dentro de
+un celular (14 s, no generada con IA): inicio, catálogo, la campera, talle M,
+agregar al carrito y el resumen con el botón de WhatsApp. Se grabó con
+Playwright. Los clips 1 a 4 se recortaron a 13 s y se unieron con ffmpeg,
+con los textos del guion técnico (Anexo II del informe) y una placa final con
+la leyenda «Generado con IA». Duración total: 85 s.
+
+Antes se probaron Veo en vidogrid.ai (sin créditos), la redacción automática
+de Clipchamp y una escena con diálogo generado por la IA, que se descartó
+porque las voces no se entendían bien (comparativa de evolución).
