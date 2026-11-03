@@ -12,8 +12,8 @@ El registro detallado de prompts, errores y aciertos está en
 | --- | --- | --- |
 | Claude Code (extensión de VS Code), modelo Opus 5.5, plan Pro | Redactar y corregir la especificación, crear los comandos y las skills, escribir el código y los archivos SQL | Modo Manual: cada cambio se mostró antes de aplicarse y el autor lo aprobó o lo rechazó |
 | Claude (chat en claude.ai) | Revisar las propuestas de Claude Code, detectar inconsistencias entre archivos, explicar conceptos y preparar borradores de documentos | El autor leyó cada respuesta y decidió qué aplicar |
-| PENDIENTE: herramienta de imágenes | Generar las 8 imágenes fotorrealistas | Cada imagen tiene su ficha en `multimedia/FICHAS-IA.md` y la leyenda «Generado con IA» |
-| PENDIENTE: herramienta de video | Video promocional | Ídem |
+| Google Gemini (gemini.google.com, gratis) | Generar las 8 imágenes fotorrealistas | Cada imagen tiene su ficha en [FICHAS-IA.md](../multimedia/FICHAS-IA.md) y la leyenda «Generado con IA» |
+| vidogrid.ai | Video promocional | Tiene su ficha en [FICHAS-IA.md](../multimedia/FICHAS-IA.md) y la leyenda «Generado con IA» en pantalla |
 
 ## Qué hizo la IA y qué hizo el autor
 
@@ -44,7 +44,7 @@ pero no lo es, o inventa datos del negocio (precios, teléfonos, horarios).
 - Tests con Vitest y `/verificar`, que no marca un criterio como cumplido
   sin evidencia.
 
-**Evidencia:** 7 errores de la IA detectados y corregidos, registrados en
+**Evidencia:** 11 errores de la IA detectados y corregidos, registrados en
 [PROMPTS.md](PROMPTS.md).
 
 ### Riesgo 2 · Seguridad de los datos
@@ -75,6 +75,9 @@ de un producto en venta, o que muestre algo que la tienda no tiene.
   el prompt y la fecha.
 - Las fotos reales de los productos las va a cargar el negocio; las de IA
   se usan solo como ilustración del proyecto.
+
+**Evidencia:** las 8 imágenes tienen la leyenda dentro de la imagen y su
+ficha con el prompt en [FICHAS-IA.md](../multimedia/FICHAS-IA.md).
 
 ## Declaración
 
