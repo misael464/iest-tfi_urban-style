@@ -175,22 +175,22 @@ pedido.
 
 ## Etapa 10 · Seguridad
 
-- [ ] Recorrer la lista de control de [10-SEGURIDAD.md](10-SEGURIDAD.md).
-- [ ] Verificar que las 10 tablas tienen RLS activado y que la clave anon no puede escribir en ninguna.
-- [ ] Verificar que la clave `service_role` no aparece en el código, en el repositorio ni en su historial.
-- [ ] Verificar que no se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
-- [ ] Verificar que `crear_pedido` calcula el total con los precios de la base e ignora los que manda el navegador.
+- [x] Recorrer la lista de control de [10-SEGURIDAD.md](10-SEGURIDAD.md).
+- [x] Verificar que las 10 tablas tienen RLS activado y que la clave anon no puede escribir en ninguna.
+- [x] Verificar que la clave `service_role` no aparece en el código, en el repositorio ni en su historial.
+- [x] Verificar que no se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
+- [x] Verificar que `crear_pedido` calcula el total con los precios de la base e ignora los que manda el navegador.
 - [ ] Probar el límite de intentos fallidos de inicio de sesión (segunda etapa, cuando exista el panel).
-- [ ] Verificar que los mensajes de error no muestran datos internos.
+- [x] Verificar que los mensajes de error no muestran datos internos.
 
 **Criterio de terminado:** todas las casillas de la lista de control de
 seguridad están marcadas (RNF06).
 
 ## Etapa 11 · Pruebas
 
-- [ ] Ejecutar `npm test` y comprobar que todos los tests pasan.
+- [x] Ejecutar `npm test` y comprobar que todos los tests pasan.
 - [ ] Recorrer una compra completa en celular y en computadora (RNF01, RNF04).
-- [ ] Probar cada criterio de aceptación de RF01 a RF13 (alcance del TFI).
+- [x] Probar cada criterio de aceptación de RF01 a RF13 (alcance del TFI).
 - [ ] Navegar todo el sitio usando solo el teclado (RNF02).
 - [ ] Ejecutar Lighthouse en inicio y catálogo (RNF02, RNF03).
 - [ ] Probar en Chrome, Firefox, Edge y Safari (RNF07).
@@ -203,9 +203,9 @@ aceptación se cumplen y no quedan errores conocidos sin anotar.
 ## Etapa 12 · Publicación y revisión final
 
 - [ ] Completar los datos pendientes de [01-CONTEXTO.md](01-CONTEXTO.md).
-- [ ] Importar el repositorio en Vercel, sin framework ni comando de compilación.
+- [x] Importar el repositorio en Vercel, sin framework ni comando de compilación.
 - [ ] Cargar la dirección del sitio publicado en la configuración de Supabase Auth.
-- [ ] Verificar el sitio publicado con HTTPS.
+- [x] Verificar el sitio publicado con HTTPS.
 - [ ] Abrir `/no-existe.html` en el sitio publicado y comprobar que muestra `404.html`.
 - [ ] Revisar el `<title>`, la `meta description` y el `<h1>` de cada HTML, `sitemap.xml`, `robots.txt` y la imagen para redes de [09-SEO.md](09-SEO.md).
 - [ ] Reemplazar los datos de demostración por los productos reales.
@@ -227,4 +227,7 @@ y las especificaciones describen lo que efectivamente se construyó.
 | 5 · Filtros y detalle de productos | Terminada (02/11/2026) |
 | 6 · Carrito | Terminada (02/11/2026) |
 | 7 · Validación y envío de pedidos | Terminada (02/11/2026) |
-| Resto de las etapas | Sin empezar |
+| 10 · Seguridad | Terminada para el TFI (02/11/2026): 12 de 15 casillas marcadas; 2 quedan para la segunda etapa (panel) y la copia de seguridad, para después de la entrega |
+| 11 · Pruebas | En curso: `npm test` y los criterios de RF01 a RF13 verificados; PageSpeed móvil en 99 / 100 / 96 / 100 |
+| 12 · Publicación y revisión final | En curso: publicado en `https://iest-tfiurban-style.vercel.app` con HTTPS |
+| 8 y 9 (segunda etapa) | Sin empezar |

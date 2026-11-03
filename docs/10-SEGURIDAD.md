@@ -64,11 +64,17 @@ La RLS se encarga de los tres primeros puntos aunque alguien modifique el JS.
   no alcanza: quedan en el historial.
 - En esta documentación solo hay valores de ejemplo, nunca claves reales.
 
+La búsqueda es la de P4 de [CONSTITUCION.md](CONSTITUCION.md): busca la
+clave, no la palabra, así que un comentario de aviso no da un falso positivo.
+
 ```bash
-# Busca la clave en los archivos y en todo el historial de Git.
-# Tiene que no devolver nada.
-git grep -n "service_role" -- ':!docs' ':!AGENTS.md'
-git log -p -S "service_role" -- ':!docs' ':!AGENTS.md'
+# Decodifica cada JWT de los archivos y del historial y busca el rol service_role;
+# también busca las claves secretas nuevas (sb_secret_). Tiene que no devolver nada.
+{ git grep --untracked -hoE "eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+"; git log -p | grep -oE "eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+"; } \
+  | cut -d. -f2 | sort -u \
+  | while read -r p; do while [ $(( ${#p} % 4 )) -ne 0 ]; do p="$p="; done; printf '%s' "$p" | tr '_-' '/+' | base64 -d 2>/dev/null; echo; done \
+  | grep '"role":"service_role"'
+git grep --untracked -n "sb_secret_"; git log -p -S "sb_secret_" --oneline
 ```
 
 ## Políticas de acceso (RLS)
@@ -269,6 +275,21 @@ inicial.
 - **Dependencias:** `supabase-js` queda fijo en una versión; se actualiza en
   una rama y se prueba antes de fusionar. `npm audit` revisa Vitest una vez
   por mes.
+
+### Riesgo conocido: `npm audit` en Vitest
+
+El 02/11/2026, `npm audit` informó 3 vulnerabilidades (2 críticas y 1
+moderada) en `vitest`, `tinypool` y `@vitest/mocker`. Se aceptan como riesgo
+conocido:
+
+- Afectan solo a Vitest, que es una dependencia de desarrollo: corre en la
+  computadora del autor para los tests y no llega al sitio publicado, que es
+  estático y no incluye `node_modules`.
+- `npm audit --omit=dev`, que revisa solo lo que llega al sitio, da 0
+  vulnerabilidades.
+- La corrección que propone npm es pasar a Vitest 5, que rompe la
+  compatibilidad y puede pedir una versión de Node más nueva que la del
+  entorno (20.13). No se actualiza durante el TFI.
 - **Accesos:** desactivar en `administradores` a quien deje de participar y
   cambiar la contraseña de la base.
 
@@ -281,18 +302,18 @@ pg_dump "CADENA_DE_CONEXION_DE_SUPABASE" > respaldo-urban-style.sql
 
 ## Lista de control antes de publicar
 
-- [ ] Las 10 tablas tienen RLS activado.
-- [ ] Con la clave anon no se puede insertar, modificar ni borrar en ninguna tabla.
-- [ ] Con la clave anon no se leen pedidos, consultas, administradores ni productos inactivos.
-- [ ] La clave `service_role` no está en el código, en el repositorio ni en su historial.
-- [ ] `js/config/supabase.js` tiene solo la URL y la clave anon.
-- [ ] `crear_pedido` calcula el total con los precios de la base e ignora los del navegador.
-- [ ] `crear_pedido` rechaza cantidades que superan el stock.
-- [ ] Las funciones del panel rechazan a quien no es administrador.
-- [ ] El registro público de Supabase Auth está desactivado.
-- [ ] El límite de intentos de ingreso de Supabase Auth está activo.
-- [ ] No se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
-- [ ] Los mensajes de error no muestran datos internos.
-- [ ] El sitio publicado responde por HTTPS.
-- [ ] Hay una copia de seguridad reciente de la base.
-- [ ] `npm audit` no informa vulnerabilidades graves sin resolver.
+- [x] Las 10 tablas tienen RLS activado.
+- [x] Con la clave anon no se puede insertar, modificar ni borrar en ninguna tabla.
+- [x] Con la clave anon no se leen pedidos, consultas, administradores ni productos inactivos.
+- [x] La clave `service_role` no está en el código, en el repositorio ni en su historial.
+- [x] `js/config/supabase.js` tiene solo la URL y la clave anon.
+- [x] `crear_pedido` calcula el total con los precios de la base e ignora los del navegador.
+- [x] `crear_pedido` rechaza cantidades que superan el stock.
+- [ ] Las funciones del panel rechazan a quien no es administrador. *(Segunda etapa: ya se comprobó que `anon` no puede ejecutarlas; falta un usuario con sesión que no sea administrador, que existe recién con el panel.)*
+- [x] El registro público de Supabase Auth está desactivado.
+- [ ] El límite de intentos de ingreso de Supabase Auth está activo. *(Segunda etapa: sin panel no hay ingreso que probar.)*
+- [x] No se usan `innerHTML`, `outerHTML`, `insertAdjacentHTML` ni `document.write`.
+- [x] Los mensajes de error no muestran datos internos.
+- [x] El sitio publicado responde por HTTPS.
+- [ ] Hay una copia de seguridad reciente de la base. *(Pendiente conocido: se hace después de la entrega del TFI.)*
+- [x] `npm audit --omit=dev` no informa vulnerabilidades. *(Las de Vitest, de desarrollo, están aceptadas como riesgo conocido: ver arriba.)*

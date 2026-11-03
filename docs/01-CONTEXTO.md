@@ -127,4 +127,4 @@ negocio los defina:
 | Correo de contacto | Pendiente | `js/config/sitio.js` |
 | Precios reales | Pendiente (los productos de demostración tienen precios de ejemplo) | Panel web de Supabase; panel propio en la segunda etapa |
 | Fotos de los productos | Pendiente | `img/productos/` |
-| Dominio del sitio | Pendiente | Marcador `DOMINIO-PENDIENTE` en los HTML, `sitemap.xml` y `robots.txt` (ver [09-SEO.md](09-SEO.md)) |
+| Dominio del sitio | Definido: `https://iest-tfiurban-style.vercel.app` (02/11/2026) | Dirección canónica e imagen para redes de los HTML, `sitemap.xml` y `robots.txt` (ver [09-SEO.md](09-SEO.md)) |

@@ -61,7 +61,7 @@ JavaScript, salvo en el detalle y en el catálogo filtrado.
       name="description"
       content="Remeras, buzos, pantalones y camperas para combinar a tu manera. Elegí talle y color y hacé tu pedido por WhatsApp."
     />
-    <link rel="canonical" href="https://DOMINIO-PENDIENTE/" />
+    <link rel="canonical" href="https://iest-tfiurban-style.vercel.app/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
@@ -71,16 +71,16 @@ JavaScript, salvo en el detalle y en el catálogo filtrado.
       property="og:description"
       content="Remeras, buzos, pantalones y camperas para combinar a tu manera. Elegí talle y color y hacé tu pedido por WhatsApp."
     />
-    <meta property="og:image" content="https://DOMINIO-PENDIENTE/img/compartir.jpg" />
+    <meta property="og:image" content="https://iest-tfiurban-style.vercel.app/img/compartir.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     …
   </head>
 </html>
 ```
 
-- `DOMINIO-PENDIENTE` se reemplaza por el dominio definitivo cuando el negocio
-  lo defina (ver [01-CONTEXTO.md](01-CONTEXTO.md)). La dirección canónica y la
-  imagen para redes necesitan la dirección completa.
+- El sitio está publicado en `https://iest-tfiurban-style.vercel.app` (ver
+  [01-CONTEXTO.md](01-CONTEXTO.md)). La dirección canónica y la imagen para
+  redes necesitan la dirección completa.
 - En el detalle, el JS actualiza el título, la descripción y la dirección
   canónica con los datos del producto:
 
@@ -93,7 +93,7 @@ function actualizarMetadatos(producto) {
     .setAttribute("content", producto.descripcion.slice(0, 155));
   document
     .querySelector('link[rel="canonical"]')
-    .setAttribute("href", `https://DOMINIO-PENDIENTE/producto.html?slug=${encodeURIComponent(producto.slug)}`);
+    .setAttribute("href", `https://iest-tfiurban-style.vercel.app/producto.html?slug=${encodeURIComponent(producto.slug)}`);
 }
 ```
 
@@ -114,14 +114,13 @@ Además:
 - El idioma se declara en la etiqueta raíz de cada HTML: `<html lang="es">`.
 
 ```xml
-<!-- sitemap.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://DOMINIO-PENDIENTE/</loc></url>
-  <url><loc>https://DOMINIO-PENDIENTE/catalogo.html</loc></url>
-  <url><loc>https://DOMINIO-PENDIENTE/producto.html?slug=remera-demo-oversize</loc></url>
-  <url><loc>https://DOMINIO-PENDIENTE/producto.html?slug=buzo-demo-canguro</loc></url>
-  <url><loc>https://DOMINIO-PENDIENTE/producto.html?slug=pantalon-demo-cargo</loc></url>
+  <url><loc>https://iest-tfiurban-style.vercel.app/</loc></url>
+  <url><loc>https://iest-tfiurban-style.vercel.app/catalogo.html</loc></url>
+  <url><loc>https://iest-tfiurban-style.vercel.app/producto.html?slug=remera-demo-oversize</loc></url>
+  <url><loc>https://iest-tfiurban-style.vercel.app/producto.html?slug=buzo-demo-canguro</loc></url>
+  <url><loc>https://iest-tfiurban-style.vercel.app/producto.html?slug=pantalon-demo-cargo</loc></url>
 </urlset>
 ```
 
@@ -132,7 +131,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /carrito.html
 
-Sitemap: https://DOMINIO-PENDIENTE/sitemap.xml
+Sitemap: https://iest-tfiurban-style.vercel.app/sitemap.xml
 ```
 
 Los productos del `sitemap.xml` de ejemplo son los de demostración. Se
@@ -247,5 +246,5 @@ consecuencias que se aceptan para este trabajo:
 - [ ] Todas las imágenes tienen texto alternativo.
 - [ ] El carrito y el panel llevan `noindex`.
 - [ ] Existen `sitemap.xml` y `robots.txt`, con los productos activos.
-- [ ] `DOMINIO-PENDIENTE` está reemplazado por el dominio definitivo en los HTML, `sitemap.xml` y `robots.txt`.
-- [ ] Lighthouse da 80 puntos o más en SEO (RNF03).
+- [ ] La dirección `https://iest-tfiurban-style.vercel.app` está en la dirección canónica y la imagen para redes de cada HTML, en `sitemap.xml` y en `robots.txt`.
+- [x] Lighthouse da 80 puntos o más en SEO (RNF03): PageSpeed Insights móvil dio 100 (02/11/2026).
