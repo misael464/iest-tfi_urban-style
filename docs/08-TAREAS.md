@@ -128,12 +128,12 @@ importes se actualizan solos al cambiar una cantidad.
 
 ## Etapa 7 · Validación y envío de pedidos
 
-- [ ] Agregar a `js/lib/validaciones.js` las reglas del nombre y de los ítems del pedido, con sus tests.
-- [ ] Probar `crear_pedido` en Supabase: un pedido válido se registra, un precio enviado desde el navegador se ignora y un pedido sin stock se rechaza (RF12).
-- [ ] Crear `js/lib/pedidos.js`, que llama a `crear_pedido` (RF13).
-- [ ] Crear `js/lib/whatsapp.js`, que arma el mensaje y el enlace con lo que devuelve `crear_pedido`, con sus tests (RF13).
-- [ ] Mostrar en el carrito los errores por ítem que devuelve `crear_pedido` (RF12).
-- [ ] Abrir WhatsApp con el mensaje y vaciar el carrito (RF13).
+- [x] Agregar a `js/lib/validaciones.js` las reglas del nombre y de los ítems del pedido, con sus tests.
+- [x] Probar `crear_pedido` en Supabase: un pedido válido se registra, un precio enviado desde el navegador se ignora y un pedido sin stock se rechaza (RF12).
+- [x] Crear `js/lib/pedidos.js`, que llama a `crear_pedido` (RF13).
+- [x] Crear `js/lib/whatsapp.js`, que arma el mensaje y el enlace con lo que devuelve `crear_pedido`, con sus tests (RF13).
+- [x] Mostrar en el carrito los errores por ítem que devuelve `crear_pedido` (RF12).
+- [x] Abrir WhatsApp con el mensaje y vaciar el carrito (RF13).
 
 **Criterio de terminado:** un pedido válido queda guardado como `pendiente` y
 abre WhatsApp con el detalle; un pedido con un precio alterado o sin stock es
@@ -226,4 +226,5 @@ y las especificaciones describen lo que efectivamente se construyó.
 | 4 · Catálogo | Terminada (02/11/2026) |
 | 5 · Filtros y detalle de productos | Terminada (02/11/2026) |
 | 6 · Carrito | Terminada (02/11/2026) |
+| 7 · Validación y envío de pedidos | Terminada (02/11/2026) |
 | Resto de las etapas | Sin empezar |

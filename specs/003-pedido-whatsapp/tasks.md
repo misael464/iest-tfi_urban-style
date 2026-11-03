@@ -9,7 +9,7 @@
 - [x] 5. Envío: validación del nombre, “Enviando…”, errores generales e inesperados (CA02, CA03, CA09, CA10).
 - [x] 6. Avisos de `crear_pedido` junto a cada ítem (CA07, CA08).
 - [x] 7. Confirmación con el código, carrito vacío, contador en 0 y botón “Abrir WhatsApp” (CA11, CA13, CA14).
-- [ ] 8. Prueba en Supabase: precio alterado ignorado y pedido `pendiente` con su código (CA05, CA06, CA11).
-- [ ] 9. `npm test` pasa.
-- [ ] 10. Correr `revisar-marca` sobre los archivos nuevos y aplicar lo que corresponda.
-- [ ] 11. Correr `/verificar 003-pedido-whatsapp`.
+- [x] 8. Prueba en Supabase: precio alterado ignorado y pedido `pendiente` con su código (CA05, CA06, CA11).
+- [x] 9. `npm test` pasa.
+- [x] 10. Correr `revisar-marca` sobre los archivos nuevos y aplicar lo que corresponda.
+- [x] 11. Correr `/verificar 003-pedido-whatsapp`.
