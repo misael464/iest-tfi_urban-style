@@ -46,12 +46,19 @@ async function cargarProducto() {
   }
 }
 
-// Título y descripción con los datos del producto (CA05, 09-SEO.md).
+// Título, descripción y dirección canónica con los datos del producto
+// (CA05, 09-SEO.md). En el HTML, la canónica apunta al catálogo.
 function actualizarMetadatos(producto) {
   document.title = `${producto.nombre} | Urban Style`;
   document
     .querySelector('meta[name="description"]')
     .setAttribute("content", producto.descripcion.slice(0, LARGO_DESCRIPCION_META));
+  document
+    .querySelector('link[rel="canonical"]')
+    .setAttribute(
+      "href",
+      `${window.location.origin}/producto.html?slug=${encodeURIComponent(producto.slug)}`
+    );
 }
 
 function mostrarProducto(producto) {

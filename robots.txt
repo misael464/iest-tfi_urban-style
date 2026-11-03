@@ -1,0 +1,7 @@
+# robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /carrito.html
+
+Sitemap: https://iest-tfiurban-style.vercel.app/sitemap.xml
