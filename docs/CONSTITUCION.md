@@ -105,9 +105,19 @@ protege los datos es lo que corre en Supabase.
 - Todas las tablas tienen RLS. En el editor SQL de Supabase,
   `SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND NOT rowsecurity;`
   no devuelve filas.
-- La clave `service_role` no está en el código ni en el historial:
-  `git grep -n "service_role" -- ":!docs" ":!AGENTS.md"` y
-  `git log -p -S "service_role" -- ":!docs" ":!AGENTS.md"` no devuelven nada.
+- La clave `service_role` no está en el código ni en el historial. Se busca
+  la clave, no la palabra: un aviso que la nombra no cuenta. Este comando
+  decodifica cada JWT de los archivos y del historial y busca el rol
+  `service_role`; también busca las claves secretas nuevas (`sb_secret_`).
+  No tiene que devolver nada:
+
+  ```bash
+  { git grep --untracked -hoE "eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+"; git log -p | grep -oE "eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+"; } \
+    | cut -d. -f2 | sort -u \
+    | while read -r p; do while [ $(( ${#p} % 4 )) -ne 0 ]; do p="$p="; done; printf '%s' "$p" | tr '_-' '/+' | base64 -d 2>/dev/null; echo; done \
+    | grep '"role":"service_role"'
+  git grep --untracked -n "sb_secret_"; git log -p -S "sb_secret_" --oneline
+  ```
 - Un visitante no puede modificar datos. Con la clave anon,
   `supabase.from("productos").update({ precio: 1 }).eq("id", 1).select()`
   devuelve una lista vacía y el precio no cambia.
@@ -245,3 +255,4 @@ este archivo.
 | Fecha | Cambio | Motivo |
 | --- | --- | --- |
 | 28/10/2026 | Creación de la constitución con los principios P1 a P8 | Reunir las reglas no negociables del proyecto, cada una con una comprobación concreta |
+| 02/11/2026 | P4: la comprobación de `service_role` busca la clave real (un JWT con `"role":"service_role"` o una clave `sb_secret_`) en lugar de la palabra. Afecta también a [10-SEGURIDAD.md](10-SEGURIDAD.md) | Buscar la palabra daba un falso positivo con el comentario de aviso de `js/config/supabase.js`, y no habría detectado una clave pegada sin la palabra. La comprobación nueva se probó con el repositorio (vacío) y con una clave falsa fuera del repositorio (detectada) |
