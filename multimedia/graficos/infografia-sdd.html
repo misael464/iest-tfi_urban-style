@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Infografía · Ciclo SDD de Urban Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Montserrat:wght@700&display=swap"
+    />
+    <link rel="stylesheet" href="/css/globales.css" />
+    <link rel="stylesheet" href="/multimedia/graficos/infografia-sdd.css" />
+  </head>
+  <body>
+    <main class="infografia">
+      <header class="infografia-encabezado">
+        <img src="/img/marca/logo-oscuro.svg" alt="Urban Style" width="168" height="40" />
+        <h1>Así construimos la tienda: el ciclo SDD con IA</h1>
+        <p class="infografia-bajada">
+          Primero se especifica, después se programa. Una persona aprueba cada paso.
+        </p>
+      </header>
+
+      <ol class="infografia-fases">
+        <li class="fase">
+          <span class="fase-numero">1</span>
+          <h2>Constitución</h2>
+          <p>8 principios que no se negocian, cada uno con su comprobación.</p>
+          <code>docs/CONSTITUCION.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">2</span>
+          <h2>Especificar</h2>
+          <p>Qué tiene que hacer la funcionalidad, con criterios en EARS.</p>
+          <code>/spec → spec.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">3</span>
+          <h2>Clarificar</h2>
+          <p>Hasta 5 preguntas para resolver lo ambiguo antes de planificar.</p>
+          <code>/clarificar → clarificacion.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">4</span>
+          <h2>Planificar</h2>
+          <p>Qué archivos, qué datos y qué decisiones, según la arquitectura.</p>
+          <code>plan.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">5</span>
+          <h2>Tareas</h2>
+          <p>Pasos chicos, en orden, que se tildan al terminarlos y probarlos.</p>
+          <code>tasks.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">6</span>
+          <h2>Implementar</h2>
+          <p>Claude Code escribe el código en modo Manual: el autor aprueba cada cambio.</p>
+          <code>HTML · CSS · JS · Vitest</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">7</span>
+          <h2>Verificar</h2>
+          <p>Cada criterio se marca como cumplido solo con evidencia.</p>
+          <code>/verificar → verificacion.md</code>
+        </li>
+        <li class="fase">
+          <span class="fase-numero">8</span>
+          <h2>Publicar</h2>
+          <p>El sitio sale a internet y se mide con Lighthouse: 80 o más.</p>
+          <code>GitHub → Vercel</code>
+        </li>
+      </ol>
+
+      <section class="infografia-apoyo" aria-label="Herramientas de apoyo">
+        <div class="apoyo">
+          <h2>Skills que revisan</h2>
+          <p><strong>verificar-criterios:</strong> que cada criterio esté bien escrito.</p>
+          <p><strong>revisar-marca:</strong> colores, tipografías, contraste y tono.</p>
+        </div>
+        <div class="apoyo">
+          <h2>Errores registrados</h2>
+          <p>Cada error de la IA se anota en <code>PROMPTS.md</code> con su corrección.</p>
+        </div>
+        <div class="apoyo">
+          <h2>Se repite</h2>
+          <p>El ciclo 2 a 7 se hace para cada funcionalidad: catálogo, carrito y pedido.</p>
+        </div>
+      </section>
+
+      <footer class="infografia-pie">
+        <p>Generado con IA (Claude) y revisado por el autor · Andrés Misael Gordillo · TFI 2026</p>
+      </footer>
+    </main>
+  </body>
+</html>

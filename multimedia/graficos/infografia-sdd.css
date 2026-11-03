@@ -1,0 +1,135 @@
+/* multimedia/graficos/infografia-sdd.css
+   Infografía del ciclo SDD. Usa solo las variables de css/globales.css (P3). */
+
+body {
+  background: var(--color-fondo);
+}
+
+.infografia {
+  width: 1200px;
+  margin: 0 auto;
+  padding: var(--espacio-6);
+  background: var(--color-fondo);
+}
+
+.infografia-encabezado {
+  padding: var(--espacio-5);
+  background: var(--color-principal);
+  color: var(--color-fondo);
+  border-radius: var(--radio-borde);
+}
+
+.infografia-encabezado h1 {
+  margin: var(--espacio-4) 0 var(--espacio-2);
+  color: var(--color-fondo);
+  font-size: 40px;
+}
+
+.infografia-bajada {
+  margin: 0;
+  color: var(--color-acento);
+  font-size: 20px;
+}
+
+.infografia-fases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espacio-4);
+  margin: var(--espacio-5) 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: fase;
+}
+
+.fase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  padding: var(--espacio-4);
+  border: var(--borde);
+  border-radius: var(--radio-borde);
+  background: var(--color-fondo);
+}
+
+/* Flecha hacia la fase siguiente, salvo en la última de cada fila */
+.fase:not(:nth-child(4n))::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--espacio-4));
+  width: var(--espacio-4);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 20px;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.fase-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: var(--color-acento);
+  color: var(--color-principal);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: 20px;
+}
+
+.fase h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.fase p {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.fase code,
+.apoyo code {
+  font-size: 14px;
+}
+
+.fase code {
+  padding: var(--espacio-1) var(--espacio-2);
+  background: var(--color-principal);
+  color: var(--color-fondo);
+  border-radius: var(--radio-borde);
+}
+
+.infografia-apoyo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espacio-4);
+}
+
+.apoyo {
+  padding: var(--espacio-4);
+  background: var(--color-acento);
+  border-radius: var(--radio-borde);
+}
+
+.apoyo h2 {
+  margin: 0 0 var(--espacio-2);
+  font-size: 20px;
+}
+
+.apoyo p {
+  margin: 0 0 var(--espacio-2);
+}
+
+.infografia-pie {
+  margin-top: var(--espacio-5);
+  padding-top: var(--espacio-3);
+  border-top: var(--borde);
+}
+
+.infografia-pie p {
+  margin: 0;
+  font-size: 14px;
+}
