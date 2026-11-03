@@ -18,7 +18,7 @@ a `.jpg`) y se les agregó la leyenda.
 | 1 | `img/productos/remera-demo-oversize-negro.webp` | Foto del producto «Remera Demo Oversize» | Google Gemini | 03/11/2026 |
 | 2 | `img/productos/buzo-demo-canguro-gris.webp` | Foto del producto «Buzo Demo Canguro» | Google Gemini | 03/11/2026 |
 | 3 | `img/productos/pantalon-demo-cargo-negro.webp` | Foto del producto «Pantalón Demo Cargo» | Google Gemini | 03/11/2026 |
-| 4 | `multimedia/imagenes/campera-rompeviento.webp` | Video promocional | Google Gemini | 03/11/2026 |
+| 4 | `img/productos/campera-demo-rompeviento-negro.webp` y `multimedia/imagenes/campera-rompeviento.webp` | Foto del producto «Campera Demo Rompeviento» y video promocional | Google Gemini | 03/11/2026 |
 | 5 | `img/compartir.jpg` | Vista previa al compartir el sitio en redes (`og:image`) | Google Gemini | 03/11/2026 |
 | 6 | `multimedia/imagenes/estilo-urbano.webp` | Video promocional | Google Gemini | 03/11/2026 |
 | 7 | `multimedia/imagenes/perchero.webp` | Video promocional | Google Gemini | 03/11/2026 |
@@ -65,6 +65,14 @@ a `.jpg`) y se les agregó la leyenda.
 
 ## Video promocional
 
-| Archivo o enlace | Herramienta | Prompt | Fecha |
-| --- | --- | --- | --- |
-| PENDIENTE | vidogrid.ai | PENDIENTE | 03/11/2026 |
+| Escena | Herramienta | Imagen de partida | Prompt | Fecha |
+| --- | --- | --- | --- | --- |
+| 1 | Kling 3.0 (Higgsfield), 15 s | `estilo-urbano.webp` | The young man walks slowly along the cobblestone street at sunset, the camera tracks him smoothly from the side, warm golden light, gentle cinematic movement, photorealistic. No text, no logos. | 03/11/2026 |
+| 2 | Kling 3.0 (Higgsfield), 15 s | `perchero.webp` | Slow smooth camera dolly forward toward the clothing rack in the minimalist store, natural window light, the clothes on the hangers sway very slightly, photorealistic. No people, no text, no logos. | 03/11/2026 |
+| 3 | Kling 3.0 (Higgsfield), 15 s | `remera-demo-oversize-negro.webp` | The black oversized t-shirt on the wooden hanger moves gently as if touched by a soft breeze, the camera slowly pushes in, soft studio light on an ivory background, photorealistic product shot. No text, no logos. | 03/11/2026 |
+| 4 | Kling 3.0 (Higgsfield), 15 s | `compra-celular.webp` | The hands hold the phone steady and a thumb gently scrolls on the screen, the clothing rack stays softly blurred in the background, natural light, photorealistic. The phone screen shows no readable text. No logos. | 03/11/2026 |
+
+Los cuatro clips se unieron con ffmpeg, con los textos del guion técnico
+(Anexo II del informe) y una placa final con la leyenda «Generado con IA».
+Antes se probaron Veo en vidogrid.ai (sin créditos) y la redacción
+automática de Clipchamp.

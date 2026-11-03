@@ -13,7 +13,7 @@ El registro detallado de prompts, errores y aciertos está en
 | Claude Code (extensión de VS Code), modelo Opus 5.5, plan Pro | Redactar y corregir la especificación, crear los comandos y las skills, escribir el código y los archivos SQL | Modo Manual: cada cambio se mostró antes de aplicarse y el autor lo aprobó o lo rechazó |
 | Claude (chat en claude.ai) | Revisar las propuestas de Claude Code, detectar inconsistencias entre archivos, explicar conceptos y preparar borradores de documentos | El autor leyó cada respuesta y decidió qué aplicar |
 | Google Gemini (gemini.google.com, gratis) | Generar las 8 imágenes fotorrealistas | Cada imagen tiene su ficha en [FICHAS-IA.md](../multimedia/FICHAS-IA.md) y la leyenda «Generado con IA» |
-| vidogrid.ai | Video promocional | Tiene su ficha en [FICHAS-IA.md](../multimedia/FICHAS-IA.md) y la leyenda «Generado con IA» en pantalla |
+| Kling 3.0, a través de Higgsfield (plan Starter) | Video promocional: 4 clips de 15 s a partir de imágenes de Gemini | Tiene su ficha en [FICHAS-IA.md](../multimedia/FICHAS-IA.md) y la leyenda «Generado con IA» en pantalla |
 
 ## Qué hizo la IA y qué hizo el autor
 
